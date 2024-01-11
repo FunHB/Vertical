@@ -1,0 +1,1 @@
+export type RequestMethodType = 'GET' | 'POSt' | 'PUT' | 'DELETE'

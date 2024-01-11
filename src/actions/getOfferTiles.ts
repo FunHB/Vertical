@@ -1,36 +1,31 @@
 'use server'
 
 import { OfferTile } from '../types/offerTiles'
+import { cmsRequest } from './cmsRequest'
 
-export const getOfferTiles = async () => {
+export const getOfferTiles = async (page: number, language: string) => {
     try {
-        const response = await fetch(`${process.env.API_URL}/offer-tiles?populate=Icon`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `bearer ${process.env.API_TOKEN ?? ''}`
-            }
+        const response = cmsRequest('offer-tiles', 'GET', {
+            'populate': 'icon',
+            'pagination[page]': `${page}`,
+            'pagination[pageSize]': '10',
+            '_locale': language
         })
 
-        const json = await response.json()
-
-        if (!/(2\d\d)|(304)/.test(`${response.status}`)) {
-            throw new Error(`[${response.status}] Cannot fetch Offer Tiles\n ${json}`)
-        }
-
-        const offerTiles: OfferTile[] = json.data.map((tile: any) => {
-            const { attributes: { Title, Description, Icon } } = tile
-            const { data: { attributes: { formats: { thumbnail, small } } } } = Icon
+        const offerTiles: OfferTile[] = (await response).map((tile: any) => {
+            const { attributes: { title, description, link, icon } } = tile
+            const { data: { attributes: { formats: { thumbnail, small } } } } = icon
             return {
-                title: Title,
-                description: Description,
+                title,
+                link,
+                description,
                 icon: {
                     formats: {
                         thumbnail: thumbnail.url,
                         small: small.url
                     }
                 }
-            } as OfferTile
+            }
         })
 
         return offerTiles
