@@ -3,19 +3,18 @@
 import { OfferTile } from '../types/offerTiles'
 import { cmsRequest } from './cmsRequest'
 
-export const getOfferTiles = async (page: number, language: string) => {
+export const getOfferTiles = async (language: string) => {
     try {
         const response = cmsRequest('offer-tiles', 'GET', {
             'populate': 'icon',
-            'pagination[page]': `${page}`,
-            'pagination[pageSize]': '10',
             '_locale': language
         })
 
         const offerTiles: OfferTile[] = (await response).map((tile: any) => {
-            const { attributes: { title, description, link, icon } } = tile
+            const { attributes: { id, title, description, link, icon } } = tile
             const { data: { attributes: { formats: { thumbnail, small } } } } = icon
             return {
+                id,
                 title,
                 link,
                 description,

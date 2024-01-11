@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@tanstack/react-query": "^5.17.9",
-    "flag-icons": "^7.1.0",
+    "hamburger-react": "^2.5.0",
     "i18next": "^23.7.16",
     "i18next-resources-to-backend": "^1.2.0",
     "next": "14.0.4",
@@ -23,9 +23,10 @@
     "react": "^18",
     "react-dom": "^18",
     "react-i18next": "^14.0.0",
-    "react-responsive-carousel": "^3.2.23"
+    "react-multi-carousel": "^2.8.4"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^5.17.7",
     "@types/node": "^20",
     "@types/react": "^18",

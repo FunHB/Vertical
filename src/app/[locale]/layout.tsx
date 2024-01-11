@@ -33,17 +33,15 @@ export default async function RootLayout({ children, params: { locale } }: RootL
 
   return (
     <html lang={locale} dir={dir(locale)}>
-      <body className={inter.className}>
+      <body className={`font-caviar-dreams ${inter.className}`}>
         <TanstackProvider>
           <TranslationsProvider
             namespaces={i18nNamespaces}
             locale={locale}
             resources={resources}>
-            <main className="h-screen relative snap-mandatory snap-y overflow-y-scroll">
-              <Header />
-              {children}
-              <Footer />
-            </main>
+            <Header />
+            {children}
+            <Footer />
           </TranslationsProvider>
         </TanstackProvider>
       </body>

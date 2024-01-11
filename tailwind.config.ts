@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
   content: [
@@ -9,12 +10,37 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'footer-texture': "url('/img/footer-texture.jpg')",
       },
+      fontFamily: {
+        'caviar-dreams': ['CaviarDreams', 'sans-serif'],
+        'logo': ['Times New Roman', 'serif']
+      },
+      animation: {
+        'bounce-slow': 'bounce 2s linear infinite',
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.horizontal-tb': {
+          writingMode: 'horizontal-tb',
+        },
+        '.vertical-rl': {
+          writingMode: 'vertical-rl'
+        },
+        '.vertical-lr': {
+          writingMode: 'vertical-lr'
+        },
+        '.orientation-mixed': {
+          'text-orientation': 'mixed'
+        },
+        '.orientation-upright': {
+          'text-orientation': 'upright'
+        }
+      })
+    })
+  ],
 }
 export default config
