@@ -14,7 +14,7 @@ interface NavbarProps {
     }
 }
 
-export default function Navbar({ vertical = false, border = false, size = { small: 'md', normal: 'lg' } }: NavbarProps) {
+export default function Navbar({ vertical = false, border = false, size = { small: 'md', normal: '2xl' } }: NavbarProps) {
     const { t } = useTranslation('navigation')
 
     const [showNavigation, setShowNavigation] = useState(false)

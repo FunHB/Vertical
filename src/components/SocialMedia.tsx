@@ -11,11 +11,11 @@ import { getSocialMedia } from "@/src/actions/getSocialMedia"
 import { SizeProp } from "@fortawesome/fontawesome-svg-core"
 
 interface SocialMediaProps {
-    vertical?: boolean
+    box?: boolean
     size?: SizeProp
 }
 
-export default function SocialMedia({ vertical = false, size = '2x' }: SocialMediaProps) {
+export default function SocialMedia({ box = false, size = '2x' }: SocialMediaProps) {
     const queryClient = useQueryClient()
 
     const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([])
@@ -33,10 +33,10 @@ export default function SocialMedia({ vertical = false, size = '2x' }: SocialMed
 
     return socialMedia ? (
         <div>
-            <ul className={`flex ${vertical ? 'flex-col space-y-1' : 'flex-row space-x-2'} items-center justify-center`}>
+            <ul className={`flex flex-row space-x-2 items-center ${box ? 'wrap' : 'justify-center'}`}>
                 {socialMedia.map((site, index) => {
                     return (
-                        <li key={index}><a href={site.link}><FontAwesomeIcon size={size} icon={getIconByType(site.type)} /></a></li>
+                        <li className="basis-1/3" key={index}><a className="block w-full h-full" href={site.link}><FontAwesomeIcon size={size} icon={getIconByType(site.type)} /></a></li>
                     )
                 })}
             </ul>

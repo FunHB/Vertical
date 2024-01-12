@@ -4,7 +4,7 @@ import HomePage from "@/src/components/main/Home"
 import initTranslations from "../i18n"
 import TranslationsProvider from "@/src/providers/TranslationsProvider"
 
-const i18nNamespaces: string[] = ['home']
+const i18nNamespaces: string[] = ['home', 'process']
 
 interface HomeParams {
   params: {

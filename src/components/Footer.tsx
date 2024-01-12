@@ -15,14 +15,13 @@ export default function Footer({ }: FooterProps) {
 
     return (
         <footer className="bg-footer-texture bg-cover">
-            <div className="flex flex-col items-end bg-black/30">
+            <div className="bg-black/30">
                 <div className="flex-1 flex flex-row justify-between p-4 w-full">
                     <div className="flex flex-col items-start">
-                        <Logo className="fill-white w-16 h-44 md:w-28 md:h-64 mb-2" />
-                        <SocialMedia vertical={true} />
+                        <Logo className="fill-white w-32 h-full mb-2" />
                     </div>
                     <div className="flex-1 px-16 hidden md:block">
-                        <h1 className="uppercase underline text-white p-6 text-2xl">Vertical</h1>
+                        <h1 className="uppercase underline text-white p-6 text-4xl">Vertical</h1>
                         <Navbar vertical={true} size={{ normal: 'xl' }} />
                     </div>
                     <div className="flex flex-col items-center p-5">
@@ -35,9 +34,15 @@ export default function Footer({ }: FooterProps) {
                         <div className="whitespace-pre-line text-center text-lg">
                             {t('working-hours')}
                         </div>
+                        <div className="flex flex-col items-center py-8">
+                            <div className="text-center text-lg mb-3">
+                                {t('social-media-label')}
+                            </div>
+                            <SocialMedia box={true} />
+                        </div>
                     </div>
                 </div>
-                <div className="text-sm p-4">
+                <div className="text-center md:text-end text-lg p-4">
                     Copyright &copy; 2024 Vertical Design Studio
                 </div>
             </div>
