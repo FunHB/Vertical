@@ -1,12 +1,11 @@
-export interface OfferTile {
+export interface Offer {
     id: number
     title: string
-    description: string
-    link: string
+    shortDescription: string
     icon: {
         formats: {
             thumbnail: string,
-            small: string
+            image: string
         }
     }
 }

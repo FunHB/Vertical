@@ -1,11 +1,7 @@
-'use client'
-
 import { SocialMediaType } from "@/src/types/SocialMediaType"
 import { faFacebook, faInstagram, faLinkedin, faPinterest, faReddit, faSnapchat, faTiktok, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import { faNotdef } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useQueryClient } from "@tanstack/react-query"
-import { useEffect, useState } from "react"
 import { SocialMedia } from '../types/socialMedia'
 import { getSocialMedia } from "@/src/actions/getSocialMedia"
 import { SizeProp } from "@fortawesome/fontawesome-svg-core"
@@ -15,21 +11,8 @@ interface SocialMediaProps {
     size?: SizeProp
 }
 
-export default function SocialMedia({ box = false, size = '2x' }: SocialMediaProps) {
-    const queryClient = useQueryClient()
-
-    const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([])
-
-    useEffect(() => {
-        queryClient.fetchQuery({
-            queryKey: ['socialmedia'],
-            queryFn: () => {
-                return getSocialMedia()
-            }
-        }).then(data => {
-            setSocialMedia(data)
-        })
-    }, [queryClient])
+export default async function SocialMedia({ box = false, size = '2x' }: SocialMediaProps) {
+    const socialMedia = await getSocialMedia()
 
     return socialMedia ? (
         <div>

@@ -10,7 +10,7 @@ import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
-const i18nNamespaces = ['navigation', 'footer']
+const i18nNamespaces = ['navigation']
 
 export const metadata: Metadata = {
   title: 'Vertical Design Studio',
@@ -35,13 +35,10 @@ export default async function RootLayout({ children, params: { locale } }: RootL
     <html lang={locale} dir={dir(locale)}>
       <body className={`font-caviar-dreams ${inter.className}`}>
         <TanstackProvider>
-          <TranslationsProvider
-            namespaces={i18nNamespaces}
-            locale={locale}
-            resources={resources}>
+          <TranslationsProvider namespaces={i18nNamespaces} locale={locale} resources={resources}>
             <Header />
             {children}
-            <Footer />
+            <Footer locale={locale} />
           </TranslationsProvider>
         </TanstackProvider>
       </body>

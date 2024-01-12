@@ -1,5 +1,3 @@
-'use client'
-
 import LanguageChanger from "./LanguageChanger"
 import Navbar from "./Navbar"
 import SocialMedia from "./SocialMedia"
