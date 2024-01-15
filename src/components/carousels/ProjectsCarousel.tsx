@@ -3,13 +3,15 @@
 import 'react-multi-carousel/lib/styles.css'
 import Carousel from "react-multi-carousel"
 import Image from 'next/image'
+import { ProjectMedia } from '@/src/types/projectMedia'
+import Link from 'next/link'
 
-interface BackgroundCarouselProps {
-    images: { src: string, alt: string }[]
+interface ProjectsCarouselProps {
+    images: ProjectMedia[]
 }
 
-export default function BackgroundCarousel({ images }: BackgroundCarouselProps) {
-    return (
+export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
+    return images && images.length > 0 ? (
         <Carousel
             additionalTransfrom={0}
             swipeable={true}
@@ -51,13 +53,13 @@ export default function BackgroundCarousel({ images }: BackgroundCarouselProps) 
             containerClass=""
         >
             {images.map((image, index) => {
-                const { src, alt } = image
+                const { projectId, src, alt } = image
                 return (
-                    <div key={index} className="relative aspect-square flex items-center pointer-events-none w-11/12">
-                        <Image src={src} alt={alt} fill={true} sizes='(max-width: 764px) 90vw, 25vw' style={{ objectFit: 'contain' }} />
-                    </div>
+                    <Link key={index} href={`/project/${projectId}`} draggable={false} className="relative aspect-square flex items-center w-11/12">
+                        <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`} alt={alt ?? projectId} fill={true} sizes='(max-width: 764px) 90vw, 25vw' className='pointer-events-none object-contain' />
+                    </Link>
                 )
             })}
         </Carousel>
-    )
+    ) : null
 }

@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.jpg')",
+        'form': "url('/img/form-background.png')",
       },
       fontFamily: {
         'caviar-dreams': ['CaviarDreams', 'sans-serif'],

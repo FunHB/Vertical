@@ -5,11 +5,11 @@ import { Offer } from "../types/offer"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
 
-interface OfferTileComponentProps {
+interface OfferTileProps {
     offer: Offer
 }
 
-export default function OfferTileComponent({ offer }: OfferTileComponentProps) {
+export default function OfferTile({ offer }: OfferTileProps) {
     const { t } = useTranslation('home')
     const { id, title, shortDescription, icon } = offer
 
@@ -22,7 +22,7 @@ export default function OfferTileComponent({ offer }: OfferTileComponentProps) {
                         alt={title}
                         fill={true}
                         sizes="6rem"
-                        style={{ objectFit: "contain" }}
+                        className="object-contain"
                     />
                 </div>
                 <div className="mt-2">

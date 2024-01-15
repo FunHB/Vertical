@@ -26,25 +26,24 @@ export default async function Footer({ locale }: FooterProps) {
                             <h1 className="uppercase underline text-white p-6 text-4xl">Vertical</h1>
                             <Navbar vertical={true} size={{ normal: 'xl' }} />
                         </div>
-                        <div className="flex flex-col items-center p-5">
-                            <div className="my-5 mx-2 md:mx-16 px-6 py-2 border border-white uppercase">
-                                <Link className="text-xl"
-                                    href={'/contact'}>
-                                    {t('header')}
-                                </Link>
-                            </div>
+                        <div className="flex flex-col justify-center items-center px-5">
+                            <Link className="text-xl uppercase border border-white my-5 mx-2 md:mx-16 px-6 py-2"
+                                href={'/contact'}>
+                                {t('header')}
+                            </Link>
                             <div className="whitespace-pre-line text-center text-lg">
                                 {t('working-hours')}
                             </div>
-                            <div className="flex flex-col items-center py-8">
-                                <div className="text-center text-lg mb-3">
-                                    {t('social-media-label')}
-                                </div>
+                            <div className="text-center text-lg mt-5">
+                                <p>vertical.biuro@gmail.com</p>
+                                <p>(+48) 575 313 091</p>
+                            </div>
+                            <div className="hidden md:block mt-8">
                                 <SocialMedia box={true} />
                             </div>
                         </div>
                     </div>
-                    <div className="text-center md:text-end text-lg p-4">
+                    <div className="text-center md:text-end text-xs p-4 mr-16">
                         Copyright &copy; 2024 Vertical Design Studio
                     </div>
                 </div>

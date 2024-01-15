@@ -18,8 +18,13 @@ export default async function SocialMedia({ box = false, size = '2x' }: SocialMe
         <div>
             <ul className={`flex flex-row space-x-2 items-center ${box ? 'wrap' : 'justify-center'}`}>
                 {socialMedia.map((site, index) => {
+                    const { link, type } = site
                     return (
-                        <li className="basis-1/3" key={index}><a className="block w-full h-full" href={site.link}><FontAwesomeIcon size={size} icon={getIconByType(site.type)} /></a></li>
+                        <li className="w-8" key={index}>
+                            <a className="block w-full h-full" href={link}>
+                                <FontAwesomeIcon size={size} icon={getIconByType(type)} />
+                            </a>
+                        </li>
                     )
                 })}
             </ul>

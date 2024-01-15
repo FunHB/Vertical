@@ -17,5 +17,5 @@ export const cmsRequest = async (path: string, method: RequestMethodType, queryP
         throw new Error(`${status} ${name}: ${message}`)
     }
 
-    return (await response.json()).data
+    return response.json()
 }

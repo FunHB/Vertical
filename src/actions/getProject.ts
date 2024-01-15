@@ -3,19 +3,19 @@
 import { Project } from '../types/project'
 import { cmsRequest } from './cmsRequest'
 
-export const getProjects = async (projectId: number, language: string) => {
+export const getProject = async (projectId: number, language: string): Promise<Project | null> => {
     try {
         const response = await cmsRequest(`projects/${projectId}`, 'GET', {
             'populate': 'images',
             '_locale': language
         })
 
-        const project: Project = transformProject(response)
+        const project: Project = transformProject(response.data)
 
         return project
     } catch (exception) {
         console.error(exception)
-        return []
+        return null
     }
 }
 

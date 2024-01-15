@@ -1,6 +1,5 @@
 'use client'
 
-import Image from "next/image"
 import LogoSvg from '../assets/img/logo.svg'
 
 interface LogoProps {

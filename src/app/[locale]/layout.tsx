@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
 import { TanstackProvider } from '@/src/providers/TanstackProvider'
@@ -10,12 +10,6 @@ import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
-const i18nNamespaces = ['navigation']
-
-export const metadata: Metadata = {
-  title: 'Vertical Design Studio',
-  description: 'Studio projektowe Vertical'
-}
 
 export function generateStaticParams() {
   return i18nConfig.locales.map(locale => ({ locale }))
@@ -28,6 +22,17 @@ interface RootLayoutProps {
   }
 }
 
+export async function generateMetadata({ params: { locale } }: RootLayoutProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const { t: metadata } = await initTranslations(locale, ['metadata'])
+
+  return {
+    title: metadata('home-title'),
+    description: metadata('home-description')
+  }
+}
+
+const i18nNamespaces = ['navigation']
+
 export default async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
   const { resources } = await initTranslations(locale, i18nNamespaces)
 
@@ -36,7 +41,6 @@ export default async function RootLayout({ children, params: { locale } }: RootL
       <body className={`font-caviar-dreams ${inter.className}`}>
         <TanstackProvider>
           <TranslationsProvider namespaces={i18nNamespaces} locale={locale} resources={resources}>
-            <Header />
             {children}
             <Footer locale={locale} />
           </TranslationsProvider>

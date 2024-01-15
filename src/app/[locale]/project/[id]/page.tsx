@@ -1,23 +1,33 @@
-import HomePage from "@/src/components/main/Home"
-import initTranslations from "@/src/app/i18n"
-import TranslationsProvider from "@/src/providers/TranslationsProvider"
+import { getProject } from "@/src/actions/getProject"
+import Header from "@/src/components/Header"
+import { Metadata } from "next"
 
-const i18nNamespaces: string[] = ['home', 'process']
 
-interface HomeParams {
-  params: {
-    locale: string
-  }
+interface ProjectPageParams {
+    params: {
+        locale: string,
+        id: number
+    }
 }
 
-export default async function Home({ params: { locale } }: HomeParams) {
-  const { resources } = await initTranslations(locale, i18nNamespaces)
+export async function generateMetadata({ params: { locale, id } }: ProjectPageParams): Promise<Metadata> {
+    const { title } = await getProject(id, locale) ?? {}
 
-  return (
-    <TranslationsProvider
-      namespaces={i18nNamespaces}
-      locale={locale}
-      resources={resources}>
-    </TranslationsProvider>
-  )
+    return {
+        title: `${title}`,
+    }
+}
+
+export default async function ProjectPage({ params: { locale } }: ProjectPageParams) {
+
+    return (
+        <>
+            <Header />
+            <main>
+                <section className="text-black bg-white py-5">
+
+                </section>
+            </main>
+        </>
+    )
 }
