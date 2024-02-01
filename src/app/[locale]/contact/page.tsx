@@ -44,44 +44,49 @@ export default async function Contact({ params: { locale } }: ContactParams) {
     ]
 
     return (
-        <TranslationsProvider locale={locale} namespaces={i18nNamespaces} resources={resources}>
-            <Header />
-            <main>
-                <section className="text-black bg-white pt-28 pb-16">
-                    <h2 className="text-4xl md:text-5xl pt-5 text-center">{strings('contact-header')}</h2>
-                    <h4 className="text-2xl md:text-4xl pt-1 pb-10 text-center">{strings('contact-subtitle')}</h4>
+        <>
+            <Header locale={locale} />
+            <TranslationsProvider locale={locale} namespaces={i18nNamespaces} resources={resources}>
+                <main>
+                    <section className="text-black bg-white pt-28 pb-16">
+                        <h2 className="text-4xl md:text-5xl pt-5 text-center">{strings('contact-header')}</h2>
+                        <h4 className="text-2xl md:text-4xl pt-1 pb-10 text-center">{strings('contact-subtitle')}</h4>
 
-                    <form className="w-11/12 m-auto bg-form bg-cover bg-center" action={SendEmail}>
-                        <div className="bg-zinc-700/80 w-full h-full py-5">
-                            {form.map((input, index) => {
-                                const { name, type, options } = input
-                                return (
-                                    <div key={index} className="w-5/6 m-auto my-4">
-                                        {['file', 'radio'].includes(type) ? (<label className="inline-block text-white text-xl px-2 py-1">{strings(name)}</label>) : null}
+                        <form className="w-11/12 m-auto bg-form bg-cover bg-center" action={SendEmail}>
+                            <div className="bg-zinc-700/80 w-full h-full py-5">
+                                {form.map((input, index) => {
+                                    const { name, type, options } = input
+                                    return (
+                                        <div key={index} className="w-5/6 m-auto my-4">
+                                            {['file', 'radio'].includes(type) ? (<label className="inline-block text-white text-xl px-2 py-1">{`${strings(name)}${type !== 'file' ? '*' : ''}`}</label>) : null}
 
-                                        <div className="flex items-center border-b border-gray-400 :border-white py-2 bg-black/50 rounded-sm">
-                                            {getInputByType(name, type, strings(name), options)}
+                                            <div className="flex items-center border-b border-gray-400 :border-white py-2 bg-black/50 rounded-sm">
+                                                {getInputByType(name, type, strings(name), options)}
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            })}
-                            <div className="w-full flex flex-row items-center justify-center">
-                                <button className="text-white border border-white text-xl px-10 py-3 rounded-md bg-black/25 hover:bg-black/50"
-                                    type="submit"
-                                >
-                                    {strings('submit-button')}
-                                </button>
+                                    )
+                                })}
+                                <div className="w-5/6 m-auto">
+                                    <p className="text-white text-sm">* Required</p>
+                                </div>
+                                <div className="w-full flex flex-row items-center justify-center">
+                                    <button className="text-white border border-white text-xl px-10 py-3 rounded-md bg-black/25 hover:bg-black/50"
+                                        type="submit"
+                                    >
+                                        {strings('submit-button')}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </section>
-            </main>
-        </TranslationsProvider>
+                        </form>
+                    </section>
+                </main>
+            </TranslationsProvider>
+        </>
     )
 }
 
 const getInputByType = (name: string, type: string, placeholder: string, options?: string[]) => {
-    const className = 'appearance-none bg-transparent border-none w-full text-lg py-1 px-2 leading-tight text-white placeholder:text-white focus:outline-none'
+    const className = 'appearance-none bg-transparent border-none w-full text-lg py-1 px-2 leading-tight text-white placeholder:text-gray-300 focus:outline-none invalid:text-rose-600'
 
     if (type === 'textarea') {
         return (
@@ -89,7 +94,7 @@ const getInputByType = (name: string, type: string, placeholder: string, options
                 required={true}
                 name={name}
                 rows={6}
-                placeholder={placeholder}
+                placeholder={`${placeholder}*`}
                 aria-label={placeholder}>
             </textarea>
         )
@@ -117,7 +122,7 @@ const getInputByType = (name: string, type: string, placeholder: string, options
             required={type !== 'file'}
             name={name}
             type={type}
-            placeholder={placeholder}
+            placeholder={`${placeholder}*`}
             aria-label={placeholder}
             multiple={type === 'file'} />
     )

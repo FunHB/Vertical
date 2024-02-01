@@ -5,7 +5,7 @@ import Logo from "./Logo"
 import initTranslations from "../app/i18n"
 import TranslationsProvider from "../providers/TranslationsProvider"
 
-const i18nNamespaces = ['footer']
+const i18nNamespaces = ['footer', 'navigation']
 
 interface FooterProps {
     locale: string

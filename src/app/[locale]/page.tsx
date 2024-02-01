@@ -25,7 +25,7 @@ export default async function Home({ params: { locale } }: HomeParams) {
 
     return (
         <>
-            <Header white={true} />
+            <Header locale={locale} white={true} />
             <TranslationsProvider
                 namespaces={i18nNamespaces}
                 locale={locale}

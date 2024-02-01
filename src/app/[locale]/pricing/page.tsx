@@ -23,7 +23,7 @@ export default async function Pricing({ params: { locale } }: PricingParams) {
 
     return (
         <>
-            <Header />
+            <Header locale={locale} />
             <main>
                 <section className="text-black bg-white py-5">
                     <h2 className="text-4xl md:text-5xl pt-5 text-center">{strings('pricing-header')}</h2>

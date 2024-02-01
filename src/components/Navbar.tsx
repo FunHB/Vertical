@@ -23,7 +23,7 @@ export default function Navbar({ vertical = false, border = false, size = { smal
     const links = [
         { name: 'home', path: '/' },
         { name: 'about', path: '/about' },
-        { name: 'offer', path: '#offer' },
+        { name: 'offer', path: '/#offer' },
         { name: 'pricing', path: '/pricing' },
         { name: 'faq', path: '/faq' },
         { name: 'contact', path: '/contact' }

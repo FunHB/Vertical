@@ -22,7 +22,7 @@ export default async function OfferPage({ params: { locale } }: OfferPageParams)
 
   return (
     <>
-      <Header />
+      <Header locale={locale} />
       <main>
         <section className="text-black bg-white py-5">
         </section>

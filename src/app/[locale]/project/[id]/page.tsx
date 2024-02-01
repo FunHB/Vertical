@@ -22,7 +22,7 @@ export default async function ProjectPage({ params: { locale } }: ProjectPagePar
 
     return (
         <>
-            <Header />
+            <Header locale={locale} />
             <main>
                 <section className="text-black bg-white py-5">
 
