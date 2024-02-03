@@ -1,3 +1,5 @@
+import { Project } from './project'
+
 export interface Offer {
     id: number
     title: string
@@ -7,5 +9,6 @@ export interface Offer {
             thumbnail: string,
             image: string
         }
-    }
+    },
+    projects: Project[]
 }

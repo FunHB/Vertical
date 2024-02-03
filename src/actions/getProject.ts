@@ -22,8 +22,8 @@ export const getProject = async (projectId: number, language: string): Promise<P
 export const transformProject = (project: any): Project => {
     const { id, attributes: { title, images } } = project
 
-    const imagesStrings: string[] = images.map((image: any) => {
-        const { data: { attributes: { formats: { small, medium, large } } } } = image
+    const imagesStrings: string[] = images?.data.map((image: any) => {
+        const { attributes: { formats: { small, medium, large } } } = image
         return (large ?? medium ?? small).url
     })
 

@@ -2,11 +2,12 @@
 
 import { Offer } from '../types/offer'
 import { cmsRequest } from './cmsRequest'
+import { transformProject } from './getProject'
 
 export const getOffer = async (offerId: number, language: string): Promise<Offer | null> => {
     try {
         const response = await cmsRequest(`offers/${offerId}`, 'GET', {
-            'populate': 'icon',
+            'populate': 'icon,projects,projects.images',
             '_locale': language
         })
 
@@ -20,8 +21,10 @@ export const getOffer = async (offerId: number, language: string): Promise<Offer
 }
 
 export const transformOffer = (offer: any): Offer => {
-    const { id, attributes: { title, short_description, icon } } = offer
+    const { id, attributes: { title, short_description, icon, projects } } = offer
     const { data: { attributes: { formats: { thumbnail, small, medium, large } } } } = icon
+
+    const { data } = projects ?? {}
 
     return {
         id,
@@ -32,6 +35,7 @@ export const transformOffer = (offer: any): Offer => {
                 thumbnail: thumbnail.url,
                 image: (large ?? medium ?? small).url
             }
-        }
+        },
+        projects: data ? data.map((project: any) => transformProject(project)) : []
     }
 }
