@@ -26,13 +26,11 @@ export default async function Home({ params: { locale } }: HomeParams) {
     return (
         <>
             <Header locale={locale} white={true} />
-            <TranslationsProvider
-                namespaces={i18nNamespaces}
-                locale={locale}
-                resources={resources}>
+            <TranslationsProvider namespaces={i18nNamespaces} locale={locale} resources={resources}>
                 <BackgroundCarousel />
+                
                 <section id="offer" className="text-black bg-white py-5">
-                    <h2 className="text-4xl md:text-5xl pt-5 text-center">{homeStrings('offer-header')}</h2>
+                    <h2 className="text-3xl md:text-4xl pt-5 text-center">{homeStrings('offer-header')}</h2>
                     <div className="p-3 flex flex-row flex-wrap justify-center">
                         {offers.map((offer, index) => {
                             return (
@@ -41,13 +39,15 @@ export default async function Home({ params: { locale } }: HomeParams) {
                         })}
                     </div>
                 </section>
+
                 <section className="text-black bg-white border-t-2 border-black py-5">
-                    <h2 className="text-3xl md:text-5xl pt-5 text-center">{homeStrings('process-header')}</h2>
-                    <h2 className="text-2xl md:text-4xl text-center mb-2 md:mb-10">{homeStrings('process-subtitle')}</h2>
+                    <h2 className="text-3xl md:text-4xl pt-5 text-center">{homeStrings('process-header')}</h2>
+                    <h2 className="text-2xl md:text-2xl text-center mb-2 md:mb-5">{homeStrings('process-subtitle')}</h2>
                     <WorkProcess />
                 </section>
+
                 <section className="text-black bg-white border-t-2 border-black pt-5 pb-20">
-                    <h2 className="text-4xl md:text-5xl py-5 text-center mb-2 md:mb-10">{homeStrings('example-header')}</h2>
+                    <h2 className="text-3xl md:text-4xl py-5 text-center mb-2 md:mb-5">{homeStrings('example-header')}</h2>
                     <div className="w-full bg-gray-200">
                         <ProjectsCarousel images={images} />
                     </div>

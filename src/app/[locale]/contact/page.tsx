@@ -5,6 +5,8 @@ import Header from "@/src/components/Header"
 import TranslationsProvider from "@/src/providers/TranslationsProvider"
 import { Metadata } from "next"
 
+const i18nNamespaces: string[] = ['contact']
+
 interface ContactParams {
     params: {
         locale: string
@@ -18,8 +20,6 @@ export async function generateMetadata({ params: { locale } }: ContactParams): P
         title: metadata('contact-title')
     }
 }
-
-const i18nNamespaces: string[] = ['contact']
 
 export default async function Contact({ params: { locale } }: ContactParams) {
     const { t: strings, resources } = await initTranslations(locale, i18nNamespaces)
@@ -50,27 +50,27 @@ export default async function Contact({ params: { locale } }: ContactParams) {
                 <main>
                     <section className="text-black bg-white pt-28 pb-16">
                         <h2 className="text-4xl md:text-5xl pt-5 text-center">{strings('contact-header')}</h2>
-                        <h4 className="text-2xl md:text-4xl pt-1 pb-10 text-center">{strings('contact-subtitle')}</h4>
+                        <h4 className="text-xl md:text-3xl pt-1 pb-10 text-center">{strings('contact-subtitle')}</h4>
 
-                        <form className="w-11/12 m-auto bg-form bg-cover bg-center" action={SendEmail}>
-                            <div className="bg-zinc-700/80 w-full h-full py-5">
+                        <form className="w-11/12 md:w-2/3 lg:w-1/2 m-auto" action={SendEmail}>
+                            <div className="w-full h-full py-5">
                                 {form.map((input, index) => {
                                     const { name, type, options } = input
                                     return (
                                         <div key={index} className="w-5/6 m-auto my-4">
-                                            {['file', 'radio'].includes(type) ? (<label className="inline-block text-white text-xl px-2 py-1">{`${strings(name)}${type !== 'file' ? '*' : ''}`}</label>) : null}
+                                            {['file', 'radio'].includes(type) ? (<label className="inline-block text-xl px-2 py-1">{`${strings(name)}${type !== 'file' ? '*' : ''}`}</label>) : null}
 
-                                            <div className="flex items-center border-b border-gray-400 :border-white py-2 bg-black/50 rounded-sm">
+                                            <div className="flex items-center border-b border-black :border-black py-2 rounded-sm">
                                                 {getInputByType(name, type, strings(name), options)}
                                             </div>
                                         </div>
                                     )
                                 })}
                                 <div className="w-5/6 m-auto">
-                                    <p className="text-white text-sm">* Required</p>
+                                    <p className="text-sm">* Required</p>
                                 </div>
                                 <div className="w-full flex flex-row items-center justify-center">
-                                    <button className="text-white border border-white text-xl px-10 py-3 rounded-md bg-black/25 hover:bg-black/50"
+                                    <button className="text-white border border-black text-xl px-10 py-3 rounded-md bg-black/50 hover:bg-black/75"
                                         type="submit"
                                     >
                                         {strings('submit-button')}
@@ -86,7 +86,7 @@ export default async function Contact({ params: { locale } }: ContactParams) {
 }
 
 const getInputByType = (name: string, type: string, placeholder: string, options?: string[]) => {
-    const className = 'appearance-none bg-transparent border-none w-full text-lg py-1 px-2 leading-tight text-white placeholder:text-gray-300 focus:outline-none invalid:text-rose-600'
+    const className = 'appearance-none bg-transparent border-none w-full text-lg py-1 px-2 leading-tight text-black placeholder:text-black focus:outline-none invalid:text-rose-600'
 
     if (type === 'textarea') {
         return (
@@ -106,8 +106,8 @@ const getInputByType = (name: string, type: string, placeholder: string, options
                 {options.map((option, index) => {
                     return (
                         <li key={index} className="w-full h-full border-r border-white has-[:checked]:bg-black">
-                            <label className="cursor-pointer flex items-center space-x-4 w-full py-3 ms-2 text-base text-white has-[:checked]:bg-white has-[:checked]:text-black has-[:checked]:border-black">
-                                <input type="radio" value={option} name={name} required={true} className="w-4 h-4 mx-2 text-white" />
+                            <label className="cursor-pointer flex items-center space-x-4 w-full p-3 ms-2 text-base text-black has-[:checked]:bg-white">
+                                <input type="radio" value={option} name={name} required={true} className="hidden" defaultChecked={index == 0} />
                                 {option}
                             </label>
                         </li>

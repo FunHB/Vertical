@@ -8,7 +8,7 @@ export const getOffer = async (offerId: number, language: string): Promise<Offer
     try {
         const response = await cmsRequest(`offers/${offerId}`, 'GET', {
             'populate': 'icon,projects,projects.images',
-            '_locale': language
+            'locale': language
         })
 
         const offer: Offer = transformOffer(response.data)

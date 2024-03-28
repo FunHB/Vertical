@@ -8,7 +8,7 @@ export const getProjects = async (projectId: number, language: string): Promise<
     try {
         const response = await cmsRequest(`projects/${projectId}`, 'GET', {
             'populate': 'images',
-            '_locale': language
+            'locale': language
         })
 
         const project: Project[] = response.data.map((data: any) => {

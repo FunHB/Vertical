@@ -20,25 +20,25 @@ export default async function Footer({ locale }: FooterProps) {
                 <div className="bg-black/30">
                     <div className="flex-1 flex flex-row justify-between p-4 w-full">
                         <div className="flex flex-col items-start">
-                            <Logo className="fill-white w-32 h-full mb-2" />
+                            <Logo className="fill-white w-28 h-full" />
                         </div>
-                        <div className="flex-1 px-16 hidden md:block">
-                            <h1 className="uppercase underline text-white p-6 text-4xl">Vertical</h1>
-                            <Navbar vertical={true} size={{ normal: 'xl' }} />
+                        <div className="flex-1 px-10 hidden md:block">
+                            <h1 className="uppercase text-white p-4 text-3xl"><span className="border-b">Vertical</span></h1>
+                            <Navbar vertical={true} size={{ normal: 'lg' }} />
                         </div>
-                        <div className="flex flex-col justify-center items-center px-5">
+                        <div className="flex flex-col justify-center items-center px-4">
                             <Link className="text-xl uppercase border border-white my-5 mx-2 md:mx-16 px-6 py-2"
                                 href={'/contact'}>
                                 {t('header')}
                             </Link>
-                            <div className="whitespace-pre-line text-center text-lg">
+                            <div className="whitespace-pre-line text-center text-base">
                                 {t('working-hours')}
                             </div>
-                            <div className="text-center text-lg mt-5">
+                            <div className="text-center text-base mt-5">
                                 <p>vertical.biuro@gmail.com</p>
                                 <p>(+48) 575 313 091</p>
                             </div>
-                            <div className="hidden md:block mt-8">
+                            <div className="hidden md:block mt-7">
                                 <SocialMedia box={true} />
                             </div>
                         </div>

@@ -4,7 +4,6 @@ import ProjectComponent from "@/src/components/ProjectComponent"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-
 interface OfferPageParams {
     params: {
         locale: string,

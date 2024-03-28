@@ -2,7 +2,7 @@ import initTranslations from "@/src/app/i18n"
 import Header from "@/src/components/Header"
 import { Metadata } from "next"
 
-const i18nNamespaces: string[] = []
+const i18nNamespaces: string[] = ['pricing']
 
 interface PricingParams {
     params: {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params: { locale } }: PricingParams): P
 }
 
 export default async function Pricing({ params: { locale } }: PricingParams) {
-    const { t: strings } = await initTranslations(locale, ['pricing'])
+    const { t: strings } = await initTranslations(locale, i18nNamespaces)
 
     return (
         <>

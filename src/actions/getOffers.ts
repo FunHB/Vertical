@@ -8,7 +8,7 @@ export const getOffers = async (language: string): Promise<Offer[]> => {
     try {
         const response = await cmsRequest('offers', 'GET', {
             'populate': 'icon',
-            '_locale': language
+            'locale': language
         })
 
         const offers: Offer[] = response.data.map((data: any) => {

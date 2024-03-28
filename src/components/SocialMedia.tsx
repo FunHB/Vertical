@@ -11,7 +11,7 @@ interface SocialMediaProps {
     size?: SizeProp
 }
 
-export default async function SocialMedia({ box = false, size = '2x' }: SocialMediaProps) {
+export default async function SocialMedia({ box = false, size = '2xl' }: SocialMediaProps) {
     const socialMedia = await getSocialMedia()
 
     return socialMedia ? (

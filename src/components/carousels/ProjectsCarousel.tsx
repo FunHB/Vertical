@@ -33,13 +33,18 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             sliderClass=""
             slidesToSlide={1}
             responsive={{
-                desktop: {
+                wideDesktop: {
                     breakpoint: { max: 3000, min: 1024 },
+                    items: 4,
+                    partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
+                },
+                desktop: {
+                    breakpoint: { max: 1024, min: 778 },
                     items: 3,
                     partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
                 },
                 tablet: {
-                    breakpoint: { max: 1024, min: 464 },
+                    breakpoint: { max: 778, min: 464 },
                     items: 2,
                     partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                 },
@@ -56,7 +61,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
                 const { projectId, src, alt } = image
                 return (
                     <Link key={index} href={`/project/${projectId}`} draggable={false} className="relative aspect-square flex items-center w-11/12">
-                        <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`} alt={alt ?? projectId} fill={true} sizes='(max-width: 764px) 90vw, 25vw' className='pointer-events-none object-contain' />
+                        <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`} alt={alt ?? projectId} fill={true} sizes='c' className='pointer-events-none object-contain' />
                     </Link>
                 )
             })}

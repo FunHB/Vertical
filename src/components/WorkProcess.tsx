@@ -24,7 +24,7 @@ export default function WorkProcess({ }: WorkProcessProps) {
     ]
 
     return (
-        <div className="relative flex flex-row justify-center flex-wrap mb-10" >
+        <div className="relative flex flex-row justify-center flex-wrap mb-8" >
             {
                 processTiles.map((tile, index) => {
                     return (

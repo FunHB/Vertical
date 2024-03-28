@@ -9,17 +9,17 @@ interface NavbarProps {
     vertical?: boolean
     border?: boolean
     size?: {
-        small?: string,
-        normal: string
+        normal: string,
+        large?: string
     }
 }
 
-export default function Navbar({ vertical = false, border = false, size = { small: 'md', normal: '2xl' } }: NavbarProps) {
+export default function Navbar({ vertical = false, border = false, size = { normal: 'xl', large: '2xl' } }: NavbarProps) {
     const { t } = useTranslation('navigation')
 
     const [showNavigation, setShowNavigation] = useState(false)
 
-    const { small, normal } = size
+    const { normal, large } = size
     const links = [
         { name: 'home', path: '/' },
         { name: 'about', path: '/about' },
@@ -32,11 +32,11 @@ export default function Navbar({ vertical = false, border = false, size = { smal
     return (
         <nav className="flex flex-row items-center justify-between">
             {/* Desktop Navigation */}
-            <ul className={`hidden text-${small ?? normal} md:flex ${vertical ? 'flex-col' : 'flex-row'} md:text-${normal}`}>
+            <ul className={`hidden text-${normal} md:flex ${vertical ? 'flex-col' : 'flex-row'} lg:text-${large}`}>
                 {links.map((link, index) => {
                     const { name, path } = link
                     return (
-                        <li key={index} className={`px-6 py-2 ${border ? 'border border-dashed border-white' : ''}`}>
+                        <li key={index} className={`px-2 lg:px-6 py-2 ${border ? 'border border-dashed border-white' : ''}`}>
                             <Link className="w-full h-full" href={path}>{t(name)}</Link>
                         </li>
                     )

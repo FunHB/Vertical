@@ -12,6 +12,10 @@ const config: Config = {
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.jpg')",
         'form': "url('/img/form-background.png')",
+        'faq': "url('/img/faq-background.png')",
+        'about-right-corner': "url('/img/right-corner.png')",
+        'about-left-corner': "url('/img/left-corner.png')",
+        'faq-right': "url('/img/right-triangle.png')",
       },
       fontFamily: {
         'caviar-dreams': ['CaviarDreams', 'sans-serif'],
@@ -19,6 +23,9 @@ const config: Config = {
       },
       animation: {
         'bounce-slow': 'bounce 2s linear infinite',
+      },
+      aspectRatio: {
+        '4/3': '4/3'
       }
     },
   },
