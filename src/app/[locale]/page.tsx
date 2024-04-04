@@ -28,7 +28,7 @@ export default async function Home({ params: { locale } }: HomeParams) {
             <Header locale={locale} white={true} />
             <TranslationsProvider namespaces={i18nNamespaces} locale={locale} resources={resources}>
                 <BackgroundCarousel />
-                
+
                 <section id="offer" className="text-black bg-white py-5">
                     <h2 className="text-3xl md:text-4xl pt-5 text-center">{homeStrings('offer-header')}</h2>
                     <div className="p-3 flex flex-row flex-wrap justify-center">
@@ -47,9 +47,11 @@ export default async function Home({ params: { locale } }: HomeParams) {
                 </section>
 
                 <section className="text-black bg-white border-t-2 border-black pt-5 pb-20">
-                    <h2 className="text-3xl md:text-4xl py-5 text-center mb-2 md:mb-5">{homeStrings('example-header')}</h2>
-                    <div className="w-full bg-gray-200">
-                        <ProjectsCarousel images={images} />
+                    <h2 className="text-3xl md:text-4xl text-center mb-2 md:mb-5">{homeStrings('example-header')}</h2>
+                    <div className="w-full">
+                        <div className="bg-white">
+                            <ProjectsCarousel images={images} />
+                        </div>
                     </div>
                 </section>
             </TranslationsProvider>

@@ -2,6 +2,7 @@ import { SendEmail } from "@/src/actions/sendEmail"
 import initTranslations from "@/src/app/i18n"
 import ContactForm from "@/src/components/ContactForm"
 import Header from "@/src/components/Header"
+import Triangle from "@/src/components/Triangle"
 import TranslationsProvider from "@/src/providers/TranslationsProvider"
 import { Metadata } from "next"
 
@@ -48,36 +49,93 @@ export default async function Contact({ params: { locale } }: ContactParams) {
             <Header locale={locale} />
             <TranslationsProvider locale={locale} namespaces={i18nNamespaces} resources={resources}>
                 <main>
-                    <section className="text-black bg-white pt-28 pb-16">
-                        <h2 className="text-4xl md:text-5xl pt-5 text-center">{strings('contact-header')}</h2>
-                        <h4 className="text-xl md:text-3xl pt-1 pb-10 text-center">{strings('contact-subtitle')}</h4>
-
-                        <form className="w-11/12 md:w-2/3 lg:w-1/2 m-auto" action={SendEmail}>
-                            <div className="w-full h-full py-5">
-                                {form.map((input, index) => {
-                                    const { name, type, options } = input
-                                    return (
-                                        <div key={index} className="w-5/6 m-auto my-4">
-                                            {['file', 'radio'].includes(type) ? (<label className="inline-block text-xl px-2 py-1">{`${strings(name)}${type !== 'file' ? '*' : ''}`}</label>) : null}
-
-                                            <div className="flex items-center border-b border-black :border-black py-2 rounded-sm">
-                                                {getInputByType(name, type, strings(name), options)}
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                                <div className="w-5/6 m-auto">
-                                    <p className="text-sm">* Required</p>
-                                </div>
-                                <div className="w-full flex flex-row items-center justify-center">
-                                    <button className="text-white border border-black text-xl px-10 py-3 rounded-md bg-black/50 hover:bg-black/75"
-                                        type="submit"
-                                    >
-                                        {strings('submit-button')}
-                                    </button>
-                                </div>
+                    <section className="text-black bg-white pt-28 pb-16 overflow-hidden">
+                        <div className="relative w-11/12 md:w-2/3 lg:w-1/2 m-auto">
+                            <div className="absolute right-0 top-0 aspect-square w-16">
+                                <Triangle
+                                    className="absolute left-0"
+                                    color={"#000"}
+                                    rotation={0}
+                                    size={{
+                                        top: 50,
+                                        right: 25,
+                                        left: 25
+                                    }}
+                                />
+                                <Triangle
+                                    className="absolute -right-6 -bottom-5"
+                                    color={"#000"}
+                                    rotation={-100}
+                                    size={{
+                                        top: 45,
+                                        right: 20,
+                                        left: 20
+                                    }}
+                                />
                             </div>
-                        </form>
+
+                            <h2 className="text-4xl md:text-5xl pt-5 text-center">{strings('contact-header')}</h2>
+                            <h4 className="w-5/6 m-auto text-xl md:text-3xl pt-1 pb-10 text-center">{strings('contact-subtitle')}</h4>
+
+                            <form className="" action={SendEmail}>
+                                <div className="w-full h-full py-5">
+                                    {form.map((input, index) => {
+                                        const { name, type, options } = input
+                                        return (
+                                            <div key={index} className="w-5/6 m-auto my-4">
+                                                {['file', 'radio'].includes(type) ? (<label className="inline-block text-xl px-2 py-1">{`${strings(name)}${type !== 'file' ? '*' : ''}`}</label>) : null}
+
+                                                <div className="flex items-center border-b border-black :border-black py-2 rounded-sm">
+                                                    {getInputByType(name, type, strings(name), options)}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                    <div className="w-5/6 m-auto mb-3">
+                                        <p className="text-sm">* Required</p>
+                                    </div>
+                                    <div className="w-full flex flex-row items-center justify-center">
+                                        <button className="text-white border border-black font-bold text-xl px-10 py-3 rounded-md bg-black hover:bg-white hover:text-black"
+                                            type="submit"
+                                        >
+                                            {strings('submit-button')}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div className="absolute left=0 bottom-0 aspect-square w-16">
+                                <Triangle
+                                    className="absolute top-0 -left-5"
+                                    color={"#000"}
+                                    rotation={75}
+                                    size={{
+                                        top: 35,
+                                        right: 15,
+                                        left: 15
+                                    }}
+                                />
+                                <Triangle
+                                    className="absolute top-12 -left-5"
+                                    color={"#000"}
+                                    rotation={30}
+                                    size={{
+                                        top: 42,
+                                        right: 18,
+                                        left: 18
+                                    }}
+                                />
+                                <Triangle
+                                    className="absolute top-8 right-0"
+                                    color={"#000"}
+                                    rotation={140}
+                                    size={{
+                                        top: 48,
+                                        right: 23,
+                                        left: 23
+                                    }}
+                                />
+                            </div>
+                        </div>
                     </section>
                 </main>
             </TranslationsProvider>
@@ -87,6 +145,18 @@ export default async function Contact({ params: { locale } }: ContactParams) {
 
 const getInputByType = (name: string, type: string, placeholder: string, options?: string[]) => {
     const className = 'appearance-none bg-transparent border-none w-full text-lg py-1 px-2 leading-tight text-black placeholder:text-black focus:outline-none invalid:text-rose-600'
+
+    if (type === 'file') {
+        return (
+            <input className={`${className}`}
+                accept="image/*, application/pdf"
+                required={false}
+                name={name}
+                type={type}
+                aria-label={placeholder}
+                multiple={true} />
+        )
+    }
 
     if (type === 'textarea') {
         return (
@@ -119,11 +189,10 @@ const getInputByType = (name: string, type: string, placeholder: string, options
 
     return (
         <input className={`${className}`}
-            required={type !== 'file'}
+            required={true}
             name={name}
             type={type}
             placeholder={`${placeholder}*`}
-            aria-label={placeholder}
-            multiple={type === 'file'} />
+            aria-label={placeholder} />
     )
 }

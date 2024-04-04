@@ -11,10 +11,6 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.jpg')",
-        'form': "url('/img/form-background.png')",
-        'faq': "url('/img/faq-background.png')",
-        'about-right-corner': "url('/img/right-corner.png')",
-        'about-left-corner': "url('/img/left-corner.png')",
         'faq-right': "url('/img/right-triangle.png')",
         'faq-left': "url('/img/left-triangle.png')",
       },

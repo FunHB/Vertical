@@ -4,9 +4,9 @@ import { Project } from '../types/project'
 import { cmsRequest } from './cmsRequest'
 import { transformProject } from './getProject'
 
-export const getProjects = async (projectId: number, language: string): Promise<Project[]> => {
+export const getProjects = async (language: string): Promise<Project[]> => {
     try {
-        const response = await cmsRequest(`projects/${projectId}`, 'GET', {
+        const response = await cmsRequest(`projects`, 'GET', {
             'populate': 'images',
             'locale': language
         })

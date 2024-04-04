@@ -32,7 +32,7 @@ export default async function About({ params: { locale } }: AboutParams) {
         <>
             <Header locale={locale} />
             <main className="">
-                <section className="text-black bg-white pt-28">
+                <section className="text-black bg-white pt-28 overflow-hidden">
                     <h2 className="text-4xl md:text-5xl pt-5 mb-16 text-center">{strings('about-header')}</h2>
 
                     {image ? (
@@ -74,18 +74,65 @@ export default async function About({ params: { locale } }: AboutParams) {
                         </div>
                     ) : null}
 
-                    <div className="relative mt-16 pb-16 lg:pb-28 w-11/12 md:w-5/6 m-auto">
-                        <h4 className="text-center text-2xl mb-8 z-10">{strings('about-text-header')}</h4>
-                        <div className="whitespace-pre-wrap w-5/6 md:w-3/4 m-auto text-justify text-xl z-10">
+                    <div className="relative mt-16 pb-16 lg:pb-28 w-11/12 md:w-3/4 m-auto">
+                        <div className="absolute -right-5 top-0 sm:right-0 aspect-square w-16">
+                            <Triangle
+                                className="absolute left-0"
+                                color={"#000"}
+                                rotation={0}
+                                size={{
+                                    top: 50,
+                                    right: 25,
+                                    left: 25
+                                }}
+                            />
+                            <Triangle
+                                className="absolute -right-6 -bottom-5"
+                                color={"#000"}
+                                rotation={-100}
+                                size={{
+                                    top: 45,
+                                    right: 20,
+                                    left: 20
+                                }}
+                            />
+                        </div>
+                        <h4 className="text-center text-2xl mb-8">{strings('about-text-header')}</h4>
+                        <div className="whitespace-pre-wrap w-11/12 m-auto text-justify text-base sm:text-xl mb-16 lg:mb-12">
                             {strings('about-text')}
                         </div>
-                        <div className="absolute top-0 h-full w-full flex flex-col justify-between px-0 lg:px-10 xl:px-24">
-                            <div className="w-full h-1/2 flex justify-end">
-                                <div className="w-1/6 lg:w-[12%] xl:w-1/12 bg-about-right-corner bg-no-repeat bg-right-top bg-contain"></div>
-                            </div>
-                            <div className="w-full h-1/2 flex justify-start">
-                                <div className="w-1/6 lg:w-[15%] xl:w-[10%] bg-about-left-corner bg-no-repeat bg-left-bottom bg-contain"></div>
-                            </div>
+
+                        <div className="absolute -left-5 sm:left-0 bottom-0 aspect-square w-16 mb-24">
+                            <Triangle
+                                className="absolute top-0 -left-5"
+                                color={"#000"}
+                                rotation={75}
+                                size={{
+                                    top: 35,
+                                    right: 15,
+                                    left: 15
+                                }}
+                            />
+                            <Triangle
+                                className="absolute top-12 -left-5"
+                                color={"#000"}
+                                rotation={30}
+                                size={{
+                                    top: 42,
+                                    right: 18,
+                                    left: 18
+                                }}
+                            />
+                            <Triangle
+                                className="absolute top-8 right-0"
+                                color={"#000"}
+                                rotation={140}
+                                size={{
+                                    top: 48,
+                                    right: 23,
+                                    left: 23
+                                }}
+                            />
                         </div>
                     </div>
                 </section>

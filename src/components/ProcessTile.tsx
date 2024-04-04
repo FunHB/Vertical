@@ -15,15 +15,15 @@ export default function ProcessTile({ index, tile: { src, alt, caption } }: Proc
                     <hr className="w-full h-1 bg-black" />
                 </div>
                 <div className="z-10 p-4 bg-white">
-                    <div className="relative h-24 w-24 sm:h-36 sm:w-36">
-                        <Image src={src} alt={alt} fill={true} sizes="(max-width: 764px) 6rem, 9rem" className="object-cover rounded-full" />
+                    <div className="relative h-24 w-24 sm:h-32 sm:w-32">
+                        <Image src={src} alt={alt} fill={true} sizes="(max-width: 764px) 6rem, 8rem" className="object-cover rounded-full" />
                         <div className="absolute flex justify-center items-center text-5xl rounded-full w-full h-full bg-black/40 text-white">
                             {index + 1}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="text-2xl text-center w-40 sm:w-50">
+            <div className="text-xl text-center w-40 sm:w-50">
                 {caption}
             </div>
         </div>

@@ -9,7 +9,7 @@ interface LogoProps {
 
 export default function Logo({ className, color = 'white' }: LogoProps) {
     return (
-        <div className={`relative ${className}`}>
+        <div className={`${className}`}>
             <LogoSvg fill={color} className={`font-logo fill-${color}`} />
         </div>
     )

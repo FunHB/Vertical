@@ -24,7 +24,7 @@ export const getImage = async (name: string): Promise<IImage | null> => {
     }
 }
 
-const transformImage = (image: any): IImage => {
+export const transformImage = (image: any): IImage => {
     const { caption, alternativeText, formats: { thumbnail, small, medium, large } } = image
 
     return {

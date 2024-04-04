@@ -1,12 +1,14 @@
 'use client'
 
 import 'react-multi-carousel/lib/styles.css'
-import Carousel from "react-multi-carousel"
+import Carousel, { ArrowProps } from "react-multi-carousel"
 import Image from 'next/image'
 import { Project } from '../types/project'
-import Link from 'next/link'
-import { createRef, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { useClickOutside } from '../hooks/useClickOutside'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { IImage } from '../types/image'
 
 interface ProjectComponentProps {
     project: Project
@@ -17,6 +19,22 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
     const ClickOutsideRef = createRef<HTMLDivElement>()
     const [showFullscreen, setShowFullscreen] = useState(false)
+    const [fullScreenImage, setfullScreenImage] = useState(0)
+    const [rearrangedImages, setRearrangedImages] = useState<IImage[]>(images)
+
+    useEffect(() => {
+        const array = images.slice()
+        let image = array[0]
+
+        while (image != images[fullScreenImage]) {
+            const shifted = array.shift()
+            if (!shifted) return
+            array.push(shifted)
+            image = array[0]
+        }
+
+        setRearrangedImages(array)
+    }, [fullScreenImage, images])
 
     useClickOutside(ClickOutsideRef, () => {
         setShowFullscreen(false)
@@ -24,7 +42,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
     return (
         <div className="">
-            <Link href={`/project/${id}`}><h4 className="text-2xl md:text-4xl pt-1 pb-5 text-center">{title}</h4></Link>
+            <h4 className="text-2xl md:text-4xl pt-1 pb-5 text-center">{title}</h4>
             { /* small carousel */}
             <Carousel
                 additionalTransfrom={0}
@@ -67,12 +85,19 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                 containerClass=""
             >
                 {images.map((image, index) => {
+                    const { alternativeText, formats: { thumbnail, small, medium, large } } = image
                     return (
-                        <div key={index} className='relative aspect-square flex items-center w-full'
-                            onClick={() => {
+                        <div key={index} data-id={index} className='relative aspect-square flex items-center w-full'
+                            onClick={(event) => {
                                 setShowFullscreen(true)
+                                setfullScreenImage(+((event.target as HTMLDivElement)?.dataset?.id ?? 0))
                             }}>
-                            <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${image}`} alt={`${title}-${index}`} fill={true} sizes='(max-width: 764px) 90vw, 25vw' className='pointer-events-none object-contain' />
+                            <Image className='pointer-events-none object-contain'
+                                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                alt={alternativeText ?? ''}
+                                fill={true}
+                                sizes='(max-width: 764px) 90vw, 25vw'
+                            />
                         </div>
                     )
                 })}
@@ -80,8 +105,8 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
             { /* fullscreen carousel */}
             {showFullscreen ? (
-                <div className='absolute w-screen h-screen top-0 left-0 flex flex-col justify-center items-center'>
-                    <div className='w-full h-3/4 bg-black/70 flex flex-col justify-center items-center' ref={ClickOutsideRef}>
+                <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 py-32'>
+                    <div className='aspect-square h-2/3 sm:h-5/6 flex flex-col justify-center items-center overflow-hidden' ref={ClickOutsideRef}>
                         <Carousel
                             additionalTransfrom={0}
                             swipeable={true}
@@ -103,16 +128,26 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                                 desktop: {
                                     breakpoint: { max: 3000, min: 0 },
                                     items: 1,
-                                    partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
+                                    partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
                                 }
                             }}
                             itemClass="cursor-grab flex justify-center"
-                            containerClass="w-1/2"
+                            containerClass="relative w-full h-full overflow-hidden"
+                            customLeftArrow={<LeftArrow />}
+                            customRightArrow={<RightArrow />}
                         >
-                            {images.map((image, index) => {
+                            {rearrangedImages.map((image, index) => {
+                                if (!image) return null
+
+                                const { alternativeText, formats: { thumbnail, small, medium, large } } = image
                                 return (
-                                    <div key={index} className='relative aspect-square flex items-center w-full'>
-                                        <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${image}`} alt={`${title}-${index}`} fill={true} sizes='(max-width: 764px) 90vw, 25vw' className='pointer-events-none object-contain' />
+                                    <div key={index} className='relative aspect-square w-full h-full flex items-center'>
+                                        <Image className='pointer-events-none object-contain'
+                                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                            alt={alternativeText ?? ''}
+                                            fill={true}
+                                            sizes='(max-width: 764px) 90vw, 25vw'
+                                        />
                                     </div>
                                 )
                             })}
@@ -120,6 +155,30 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                     </div>
                 </div>
             ) : null}
+        </div>
+    )
+}
+
+function RightArrow({ onClick }: ArrowProps) {
+    return (
+        <div className='group absolute top-0 right-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-l hover:from-black/30'
+            onClick={onClick}
+        >
+            <div className='hidden w-full h-full group-hover:flex justify-end items-center'>
+                <FontAwesomeIcon icon={faChevronRight} />
+            </div>
+        </div>
+    )
+}
+
+function LeftArrow({ onClick }: ArrowProps) {
+    return (
+        <div className='group absolute top-0 left-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-r hover:from-black/30'
+            onClick={onClick}
+        >
+            <div className='hidden w-full h-full group-hover:flex justify-start items-center'>
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </div>
         </div>
     )
 }

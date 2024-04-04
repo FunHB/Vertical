@@ -35,7 +35,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             responsive={{
                 wideDesktop: {
                     breakpoint: { max: 3000, min: 1024 },
-                    items: 4,
+                    items: 5,
                     partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
                 },
                 desktop: {
@@ -60,9 +60,9 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             {images.map((image, index) => {
                 const { projectId, src, alt } = image
                 return (
-                    <Link key={index} href={`/project/${projectId}`} draggable={false} className="relative aspect-square flex items-center w-11/12">
+                    <div key={index} className='relative aspect-square flex items-center w-11/12'>
                         <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`} alt={alt ?? projectId} fill={true} sizes='c' className='pointer-events-none object-contain' />
-                    </Link>
+                    </div>
                 )
             })}
         </Carousel>
