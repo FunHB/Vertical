@@ -16,8 +16,9 @@ export default function PricingComponent({ pricing }: PricingComponentProps) {
     const { alternativeText, formats: { thumbnail, small, medium, large } } = backgroundImage
 
     return (
-        <Link id={`${id}`} className='relative aspect-4/3 w-11/12 sm:w-5/6 lg:w-1/2 2xl:w-1/3 m-3 md:m-10' href={`/pricing/${id}`}>
+        <Link id={`${id}`} href={`/pricing/${id}`} className='group relative aspect-4/3 w-11/12 sm:w-5/6 lg:w-1/2 2xl:w-1/3 m-3 md:m-10 overflow-hidden'>
             <Image
+                className='absolute top-0 left-0 w-full h-full group-hover:scale-150 transition-all duration-500 ease-in-out transform'
                 src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
                 alt={alternativeText ?? ''}
                 fill={true}
