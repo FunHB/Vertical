@@ -87,7 +87,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                 {images.map((image, index) => {
                     const { alternativeText, formats: { thumbnail, small, medium, large } } = image
                     return (
-                        <div key={index} data-id={index} className='relative aspect-square flex items-center w-full'
+                        <div key={index} data-id={index} className='relative aspect-square flex items-center w-full select-none'
                             onClick={(event) => {
                                 setShowFullscreen(true)
                                 setfullScreenImage(+((event.target as HTMLDivElement)?.dataset?.id ?? 0))
@@ -141,7 +141,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
                                 const { alternativeText, formats: { thumbnail, small, medium, large } } = image
                                 return (
-                                    <div key={index} className='relative aspect-square w-full h-full flex items-center'>
+                                    <div key={index} className='relative aspect-square w-full h-full flex items-center select-none'>
                                         <Image className='pointer-events-none object-contain'
                                             src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
                                             alt={alternativeText ?? ''}
@@ -161,11 +161,11 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
 function RightArrow({ onClick }: ArrowProps) {
     return (
-        <div className='group absolute top-0 right-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-l hover:from-black/30'
+        <div className='group absolute top-0 right-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-l hover:from-black/30 select-none'
             onClick={onClick}
         >
             <div className='hidden w-full h-full group-hover:flex justify-end items-center'>
-                <FontAwesomeIcon icon={faChevronRight} />
+                {/* <FontAwesomeIcon icon={faChevronRight} /> */}
             </div>
         </div>
     )
@@ -173,11 +173,11 @@ function RightArrow({ onClick }: ArrowProps) {
 
 function LeftArrow({ onClick }: ArrowProps) {
     return (
-        <div className='group absolute top-0 left-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-r hover:from-black/30'
+        <div className='group absolute top-0 left-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-r hover:from-black/30 select-none'
             onClick={onClick}
         >
             <div className='hidden w-full h-full group-hover:flex justify-start items-center'>
-                <FontAwesomeIcon icon={faChevronLeft} />
+                {/* <FontAwesomeIcon icon={faChevronLeft} /> */}
             </div>
         </div>
     )

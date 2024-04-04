@@ -5,5 +5,6 @@ export interface Pricing {
     title: string
     subtitle?: string
     price: number
+    description: string
     backgroundImage: IImage
 }

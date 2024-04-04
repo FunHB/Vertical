@@ -21,7 +21,7 @@ export const getPricing = async (pricingId: number, language: string): Promise<P
 }
 
 export const transformPricing = (offer: any): Pricing => {
-    const { id, attributes: { title, subtitle, price, background_image } } = offer
+    const { id, attributes: { title, subtitle, price, description, background_image } } = offer
     const { data: { id: imageId, attributes } } = background_image
 
     return {
@@ -29,6 +29,7 @@ export const transformPricing = (offer: any): Pricing => {
         title,
         subtitle,
         price,
+        description,
         backgroundImage: transformImage({ imageId, ...attributes })
     }
 }

@@ -28,7 +28,6 @@ export const transformProject = (project: any): Project => {
         return transformImage({ id, ...attributes })
     })
 
-
     return {
         id,
         title,

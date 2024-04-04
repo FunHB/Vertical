@@ -60,7 +60,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             {images.map((image, index) => {
                 const { projectId, src, alt } = image
                 return (
-                    <div key={index} className='relative aspect-square flex items-center w-11/12'>
+                    <div key={index} className='relative aspect-square flex items-center w-11/12 select-none'>
                         <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`} alt={alt ?? projectId} fill={true} sizes='c' className='pointer-events-none object-contain' />
                     </div>
                 )
