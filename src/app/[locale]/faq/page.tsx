@@ -25,13 +25,25 @@ export default async function FAQPage({ params: { locale } }: FAQPageParams) {
 
     const questions = await getQuestions(locale)
 
+    const adnotation = questions.map(question => question.adnotation).filter(adnotation => !!adnotation)
+
     return (
         <>
             <Header locale={locale} />
             <main className="text-black bg-white pt-28 overflow-hidden">
                 <section>
-                    <h2 className="text-4xl md:text-5xl pt-5 text-center pb-5">{strings('faq-header')}</h2>
+                    <h2 className="text-4xl md:text-5xl text-center py-5">{strings('faq-header')}</h2>
                     <FAQ questions={questions} />
+                    <div className="w-5/6 m-auto my-16">
+                        {adnotation.map((adnotation, index) => {
+                            return adnotation ? (
+                                <div key={index}>
+                                    <span>[{index + 1}]</span>{adnotation}
+                                </div>
+                            ) : null
+                        })}
+                    </div>
+                    <h4 className="text-lg md:text-xl text-center py-7">{strings('faq-end')}</h4>
                 </section>
             </main>
         </>

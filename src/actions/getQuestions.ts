@@ -21,7 +21,7 @@ export const getQuestions = async (language: string): Promise<Question[]> => {
 }
 
 export const transformQuestion = (question: any): Question => {
-    const { attributes: { index, header, answer } } = question
+    const { attributes: { index, header, answer, adnotation } } = question
 
-    return { id: index, header, answer }
+    return { id: index, header, answer, adnotation }
 }

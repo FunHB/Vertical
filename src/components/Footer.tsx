@@ -27,7 +27,7 @@ export default async function Footer({ locale }: FooterProps) {
                             <Navbar vertical={true} size={{ normal: 'lg' }} />
                         </div>
                         <div className="flex flex-col justify-center items-center px-4">
-                            <Link className="text-xl uppercase border border-white my-5 mx-2 md:mx-16 px-6 py-2"
+                            <Link className="text-base md:text-xl uppercase border border-white my-5 mx-2 md:mx-16 px-6 py-2"
                                 href={'/contact'}>
                                 {t('header')}
                             </Link>

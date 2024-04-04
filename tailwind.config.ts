@@ -16,6 +16,7 @@ const config: Config = {
         'about-right-corner': "url('/img/right-corner.png')",
         'about-left-corner': "url('/img/left-corner.png')",
         'faq-right': "url('/img/right-triangle.png')",
+        'faq-left': "url('/img/left-triangle.png')",
       },
       fontFamily: {
         'caviar-dreams': ['CaviarDreams', 'sans-serif'],
