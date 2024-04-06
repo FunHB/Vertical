@@ -5,12 +5,15 @@ import Carousel from "react-multi-carousel"
 import Image from 'next/image'
 import { ProjectMedia } from '@/src/types/projectMedia'
 import Link from 'next/link'
+import { useWindowSize } from '@/src/hooks/useWindowSize'
 
 interface ProjectsCarouselProps {
     images: ProjectMedia[]
 }
 
 export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
+    const { width } = useWindowSize()
+
     return images && images.length > 0 ? (
         <Carousel
             additionalTransfrom={0}
@@ -23,28 +26,23 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             autoPlaySpeed={5000}
             keyBoardControl={true}
             arrows={false}
-            centerMode={false}
+            centerMode={(width ?? 0) > 768}
+            partialVisbile={(width ?? 0) < 768}
             focusOnSelect={false}
             rewind={false}
             rewindWithAnimation={false}
             rtl={false}
-            partialVisible={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
             sliderClass=""
             slidesToSlide={1}
             responsive={{
-                wideDesktop: {
-                    breakpoint: { max: 3000, min: 1024 },
-                    items: 5,
-                    partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
-                },
                 desktop: {
-                    breakpoint: { max: 1024, min: 778 },
+                    breakpoint: { max: 3000, min: 768 },
                     items: 3,
                     partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
                 },
                 tablet: {
-                    breakpoint: { max: 778, min: 464 },
+                    breakpoint: { max: 768, min: 464 },
                     items: 2,
                     partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                 },
@@ -54,14 +52,20 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
                     partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                 }
             }}
-            itemClass="cursor-grab my-8 md:my-16 flex justify-center"
+            itemClass="group cursor-grab px-3 xl:px-5 py-8 sm:py-20 flex justify-center hover:z-10"
             containerClass=""
         >
             {images.map((image, index) => {
                 const { projectId, src, alt } = image
                 return (
-                    <div key={index} className='relative aspect-square flex items-center w-11/12 select-none'>
-                        <Image src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`} alt={alt ?? projectId} fill={true} sizes='c' className='pointer-events-none object-contain' />
+                    <div key={index} className='relative w-full aspect-square flex items-center select-none'>
+                        <Image
+                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`}
+                            alt={alt ?? projectId}
+                            fill={true}
+                            sizes='20rem'
+                            className='pointer-events-none object-contain md:group-hover:scale-[135%] transition-all ease-in-out duration-300'
+                        />
                     </div>
                 )
             })}
