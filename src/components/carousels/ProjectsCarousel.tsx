@@ -52,7 +52,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
                     partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                 }
             }}
-            itemClass="group cursor-grab px-3 xl:px-5 py-8 sm:py-20 flex justify-center hover:z-10"
+            itemClass="group cursor-grab px-3 xl:px-5 py-8 sm:py-20 flex justify-center -z-10 hover:z-10 transition-all duration-300"
             containerClass=""
         >
             {images.map((image, index) => {
