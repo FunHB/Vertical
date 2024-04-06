@@ -32,7 +32,10 @@ export default function ContactForm({ }: ContactFormProps) {
     ]
 
     return !submitted ? (
-        <form className="" onSubmit={() => { setSubmitted(true) }} action={SendEmail}>
+        <form className="" action={SendEmail} onSubmit={() => {
+            setSubmitted(true)
+            
+        }}>
             <div className="w-full h-full py-5">
                 {form.map((input, index) => {
                     const { name, type, options } = input
@@ -62,7 +65,7 @@ export default function ContactForm({ }: ContactFormProps) {
             </div>
         </form>
     ) : (
-        <div className="w-full h-full py-5 pb-16">
+        <div className="w-full h-full py-12 pb-24 mb-2">
             <h3 className="text-xl md:text-3xl text-center ">{strings('form-submitted')}</h3>
         </div>
     )
