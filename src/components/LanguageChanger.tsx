@@ -32,7 +32,7 @@ export default function LanguageChanger({ white }: LanguageChangerProps) {
 
     return (
         <div ref={ClickOutsideRef} className="flex flex-col items-center relative w-24 mx-2">
-            <button className={`items-center py-1 px-4 text-xl text-center ${white ? 'text-white' : 'text-black'} focus:outline-none`}
+            <button className={`items-center py-1 px-4 text-xl text-center text-white ${white ? 'md:text-white' : 'md:text-black'} focus:outline-none`}
                 type="button"
                 onClick={() => {
                     setShowLanguages(!showLanguages)

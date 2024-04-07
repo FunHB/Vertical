@@ -63,7 +63,7 @@ export default function BackgroundCarousel({ }: BackgroundCarouselProps) {
             </Carousel>
             <div className="absolute top-0 left-0 bg-black/70 z-10 w-full h-full">
                 <div className="flex flex-col items-center justify-start h-full">
-                    <div className="flex flex-col justify-end h-2/3 md:h-3/4 items-center md:items-end">
+                    <div className="flex flex-col justify-end h-2/3 md:h-3/4 items-center md:items-end text-white">
                         <h1 className="underline underline-offset-4 uppercase text-7xl decoration-4 md:text-[10rem] md:decoration-8">Vertical</h1>
                         <div className="flex flex-col items-center text-lg mt-3 md:text-2xl md:mt-10">
                             <p>&quot;Make Yourself all simplicity&quot;</p>

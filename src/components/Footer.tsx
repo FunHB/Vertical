@@ -16,14 +16,14 @@ export default async function Footer({ locale }: FooterProps) {
 
     return (
         <TranslationsProvider locale={locale} namespaces={i18nNamespaces} resources={resources}>
-            <footer className="bg-footer-texture bg-cover">
+            <footer className="bg-footer-texture bg-cover text-white">
                 <div className="bg-black/30">
                     <div className="flex-1 flex flex-row justify-between p-4 w-full">
                         <div className="flex flex-col items-start">
                             <Logo className="fill-white w-28 h-full" />
                         </div>
                         <div className="flex-1 px-10 hidden md:block">
-                            <h1 className="uppercase text-white p-4 text-3xl"><span className="border-b">Vertical</span></h1>
+                            <h1 className="uppercase p-4 text-3xl"><span className="border-b">Vertical</span></h1>
                             <Navbar vertical={true} size={{ normal: 'lg' }} />
                         </div>
                         <div className="flex flex-col justify-center items-center px-4">
@@ -43,7 +43,7 @@ export default async function Footer({ locale }: FooterProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="text-center md:text-end text-xs p-4 mr-16">
+                    <div className="text-center md:text-end text-xs p-4 md:mr-16">
                         Copyright &copy; 2024 Vertical Design Studio
                     </div>
                 </div>

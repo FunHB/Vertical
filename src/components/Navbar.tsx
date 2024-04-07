@@ -48,14 +48,13 @@ export default function Navbar({ vertical = false, border = false, size = { norm
                 <Hamburger size={25} toggled={showNavigation} toggle={setShowNavigation} />
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Mobile Navigation */}
             <ul className={`-z-10 top-0 fixed w-full h-full py-16 ease-in-out duration-500 ${showNavigation ? 'md:hidden right-0 border-l border-l-gray-900 bg-black/90' : 'bottom-0 right-[-100%]'}`}>
-                {/* Mobile Navigation Items */}
                 {links.map((link, index) => {
                     const { name, path } = link
                     return (
-                        <li key={index} className='p-4 border-b duration-300 cursor-pointer border-gray-600 text-end hover:bg-white hover:text-black'>
-                            <Link className="text-xl w-full h-full" href={path}>{t(name)}</Link>
+                        <li key={index} className='group border-b duration-300 cursor-pointer border-gray-600 text-end hover:bg-white hover:text-black'>
+                            <Link className="inline-block w-full p-4 text-xl" href={path}>{t(name)}</Link>
                         </li>
                     )
                 })}

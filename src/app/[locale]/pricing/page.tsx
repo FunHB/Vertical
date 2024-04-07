@@ -35,7 +35,7 @@ export default async function Pricing({ params: { locale } }: PricingParams) {
                     <h2 className="text-4xl md:text-5xl pt-5 mb-5 text-center">{strings('pricing-header')}</h2>
                     <h4 className="whitespace-pre-wrap w-3/4 m-auto text-base md:text-lg pt-1 pb-10 text-center">{strings('pricing-description')}</h4>
 
-                    <ul className="flex justify-center items-center flex-wrap text-center">
+                    <ul className="hidden sm:flex justify-center items-center flex-wrap text-center">
                         {pricings.map((pricing, index) => {
                             const { id, title } = pricing
                             return (
