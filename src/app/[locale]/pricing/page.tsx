@@ -33,7 +33,7 @@ export default async function Pricing({ params: { locale } }: PricingParams) {
             <main>
                 <section className="text-black bg-white pt-28 overflow-hidden">
                     <h2 className="text-4xl md:text-5xl pt-5 mb-5 text-center">{strings('pricing-header')}</h2>
-                    <h4 className="whitespace-pre-wrap w-3/4 m-auto text-base md:text-lg pt-1 pb-10 text-center">{strings('pricing-description')}</h4>
+                    <h4 className="whitespace-pre-wrap w-3/4 m-auto text-base md:text-xl pt-1 pb-10 text-center">{strings('pricing-description')}</h4>
 
                     <ul className="hidden sm:flex justify-center items-center flex-wrap text-center">
                         {pricings.map((pricing, index) => {
@@ -54,7 +54,7 @@ export default async function Pricing({ params: { locale } }: PricingParams) {
                         })}
                     </div>
 
-                    <div className="whitespace-pre-line w-full text-lg md:text-2xl text-center mb-10">
+                    <div className="whitespace-pre-line w-full text-base md:text-xl text-center mb-10">
                         {strings('pricing-end')}
                     </div>
                 </section>
