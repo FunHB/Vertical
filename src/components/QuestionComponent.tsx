@@ -98,7 +98,7 @@ export default function QuestionComponent({ question, index }: QuestionComponent
         return (
             <article className="self-end flex flex-col items-end w-[770px] md:w-[1344px] h-[800px] text-white bg-faq-right bg-contain bg-no-repeat bg-right-top"
                 style={{
-                    marginTop: width < 768 ? 400 : width < 1024 ? 300 : -((width * (9 / 16)) - 1080) - 100
+                    marginTop: width < 768 ? 400 : width < 1024 ? 300 : width > 1920 ? -100 :  -((width * (9 / 16)) - 1080) - 100
                 }}>
                 <div className='z-10 w-[35%] md:w-[28%] min-h-24 md:min-h-28 mt-52 md:mt-80 md:mb-5 pr-5'>
                     <h4 className="font-bold text-right text-xl md:text-3xl">{header}</h4>
@@ -141,7 +141,7 @@ export default function QuestionComponent({ question, index }: QuestionComponent
         return (
             <article className="self-end flex flex-col items-end w-full lg:w-[1024px] mt-32">
                 <div className="relative w-1/4 mb-20" style={{
-                    marginTop: width < 768 ? 300 : width < 1024 ? 500 : -((width * (9 / 16)) - 1080)
+                    marginTop: width < 768 ? 300 : width < 1024 ? 500 : width > 1920 ? 0 : -((width * (9 / 16)) - 1080)
                 }}>
                     <Triangle className="absolute ml-16"
                         color={"#000000"}
