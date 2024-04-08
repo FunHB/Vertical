@@ -100,7 +100,7 @@ export default function QuestionComponent({ question, index }: QuestionComponent
                 style={{
                     marginTop: width < 768 ? 400 : width < 1024 ? 300 : -((width * (9 / 16)) - 1080) - 100
                 }}>
-                <div className='z-10 w-[35%] md:w-[28%] md:min-h-28 mt-52 md:mt-80 md:mb-5 pr-5'>
+                <div className='z-10 w-[35%] md:w-[28%] min-h-24 md:min-h-28 mt-52 md:mt-80 md:mb-5 pr-5'>
                     <h4 className="font-bold text-right text-xl md:text-3xl">{header}</h4>
                 </div>
                 <div className='z-10 w-screen md:w-1/2 pl-5 pr-5 mt-5'>
