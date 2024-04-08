@@ -100,8 +100,8 @@ export default function QuestionComponent({ question, index }: QuestionComponent
                 style={{
                     marginTop: width < 768 ? 400 : width < 1024 ? 300 : -((width * (9 / 16)) - 1080) - 100
                 }}>
-                <div className='z-10 w-[40%] md:w-1/3 mt-36 md:mt-64 md:mb-5 pr-5'>
-                    <h4 className="pt-16 font-bold text-right text-xl md:text-3xl">{header}</h4>
+                <div className='z-10 w-[35%] md:w-[28%] md:min-h-28 mt-52 md:mt-80 md:mb-5 pr-5'>
+                    <h4 className="font-bold text-right text-xl md:text-3xl">{header}</h4>
                 </div>
                 <div className='z-10 w-screen md:w-1/2 pl-5 pr-5 mt-5'>
                     <p className="text-justify text-base md:text-lg" style={{ direction: 'rtl' }}>{answer}</p>
@@ -127,8 +127,8 @@ export default function QuestionComponent({ question, index }: QuestionComponent
                 <div>
                     <h3 className={`absolute top-24 md:top-32 left-10 md:left-12 text-black text-4xl`}>{id}.</h3>
                 </div>
-                <div className='z-10 w-[40%] md:w-1/2 mt-5 md:mt-16 ml-28 md:ml-32 mb-5 pr-5'>
-                    <h4 className="pt-16 font-bold text-xl md:text-3xl">{header}</h4>
+                <div className='z-10 w-[31%] md:w-1/2 min-h-24 md:min-h-28 mt-20 md:mt-32 ml-28 md:ml-32 mb-5 pr-5'>
+                    <h4 className="font-bold text-xl md:text-3xl">{header}</h4>
                 </div>
                 <div className='z-10 w-screen md:w-[40%] pr-5 pl-5 md:pl-10'>
                     <p className="text-justify text-base md:text-lg">{answer}</p>
