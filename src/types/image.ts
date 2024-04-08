@@ -1,4 +1,5 @@
 export interface IImage {
+    name: string
     caption: string
     alternativeText: string
     formats: {

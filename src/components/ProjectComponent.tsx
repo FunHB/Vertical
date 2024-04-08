@@ -85,7 +85,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                 containerClass=""
             >
                 {images.map((image, index) => {
-                    const { alternativeText, formats: { thumbnail, small, medium, large } } = image
+                    const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image
                     return (
                         <div key={index} data-id={index} className='relative aspect-square flex items-center w-full select-none'
                             onClick={(event) => {
@@ -94,7 +94,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                             }}>
                             <Image className='pointer-events-none object-contain'
                                 src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                                alt={alternativeText ?? ''}
+                                alt={alternativeText ?? name}
                                 fill={true}
                                 sizes='(max-width: 764px) 90vw, 25vw'
                             />
@@ -139,11 +139,11 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                             {rearrangedImages.map((image, index) => {
                                 if (!image) return null
 
-                                const { alternativeText, formats: { thumbnail, small, medium, large } } = image
+                                const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image
                                 return (
                                     <Image key={index} className='pointer-events-none object-contain'
                                         src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                                        alt={alternativeText ?? ''}
+                                        alt={alternativeText ?? name}
                                         fill={true}
                                         sizes='(max-width: 764px) 90vw, 25vw'
                                     />

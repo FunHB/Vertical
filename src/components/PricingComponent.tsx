@@ -14,7 +14,7 @@ export default function PricingComponent({ pricing }: PricingComponentProps) {
     const { t: strings } = useTranslation('pricing')
 
     const { id, title, subtitle, price, description, backgroundImage } = pricing
-    const { alternativeText, formats: { thumbnail, small, medium, large } } = backgroundImage
+    const { name, alternativeText, formats: { thumbnail, small, medium, large } } = backgroundImage
 
     const [showPrice, setShowPrice] = useState(false)
 
@@ -26,7 +26,7 @@ export default function PricingComponent({ pricing }: PricingComponentProps) {
             <Image
                 className={`absolute top-0 left-0 w-full h-full ${showPrice ? 'scale-125' : 'group-hover:scale-125'} transition-all duration-500 ease-in-out transform`}
                 src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                alt={alternativeText ?? ''}
+                alt={alternativeText ?? name}
                 fill={true}
                 sizes='(max-width: 768px) 340px, 640px'
             />
