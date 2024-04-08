@@ -105,7 +105,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
             { /* fullscreen carousel */}
             {showFullscreen ? (
-                <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 py-32'>
+                <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 py-32 z-50'>
                     <div className='aspect-square w-[90vw] sm:w-auto sm:h-[90vh] flex flex-col justify-center items-center overflow-hidden' ref={ClickOutsideRef}>
                         <Carousel
                             additionalTransfrom={0}
