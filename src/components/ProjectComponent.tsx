@@ -105,8 +105,8 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
             { /* fullscreen carousel */}
             {showFullscreen ? (
-                <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 py-32 z-50'>
-                    <div className='aspect-square h-2/3 sm:h-5/6 flex flex-col justify-center items-center overflow-hidden' ref={ClickOutsideRef}>
+                <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 py-32'>
+                    <div className='aspect-square w-[90vw] sm:w-auto sm:h-[90vh] flex flex-col justify-center items-center overflow-hidden' ref={ClickOutsideRef}>
                         <Carousel
                             additionalTransfrom={0}
                             swipeable={true}
@@ -131,7 +131,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                                     partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
                                 }
                             }}
-                            itemClass="cursor-grab flex justify-center"
+                            itemClass="cursor-grab aspect-square flex justify-center items-center select-none"
                             containerClass="relative w-full h-full overflow-hidden"
                             customLeftArrow={<LeftArrow />}
                             customRightArrow={<RightArrow />}
@@ -141,14 +141,12 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
                                 const { alternativeText, formats: { thumbnail, small, medium, large } } = image
                                 return (
-                                    <div key={index} className='relative aspect-square w-full h-full flex items-center select-none'>
-                                        <Image className='pointer-events-none object-contain'
-                                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                                            alt={alternativeText ?? ''}
-                                            fill={true}
-                                            sizes='(max-width: 764px) 90vw, 25vw'
-                                        />
-                                    </div>
+                                    <Image key={index} className='pointer-events-none object-contain'
+                                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                        alt={alternativeText ?? ''}
+                                        fill={true}
+                                        sizes='(max-width: 764px) 90vw, 25vw'
+                                    />
                                 )
                             })}
                         </Carousel>
@@ -161,7 +159,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
 
 function RightArrow({ onClick }: ArrowProps) {
     return (
-        <div className='group absolute top-0 right-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-l hover:from-black/30 select-none'
+        <div className='group invisible md:visible absolute top-0 right-0 w-1/4 h-full px-3 cursor-pointer select-none'
             onClick={onClick}
         >
             <div className='hidden w-full h-full group-hover:flex justify-end items-center'>
@@ -173,7 +171,7 @@ function RightArrow({ onClick }: ArrowProps) {
 
 function LeftArrow({ onClick }: ArrowProps) {
     return (
-        <div className='group absolute top-0 left-0 w-1/3 h-full px-3 text-black/40 text-[7rem] cursor-pointer hover:bg-gradient-to-r hover:from-black/30 select-none'
+        <div className='group invisible md:visible absolute top-0 left-0 w-1/4 h-full px-3 cursor-pointer select-none'
             onClick={onClick}
         >
             <div className='hidden w-full h-full group-hover:flex justify-start items-center'>
