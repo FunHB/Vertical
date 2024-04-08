@@ -47,7 +47,7 @@ export default function LanguageChanger({ white }: LanguageChangerProps) {
                                 const { name, code } = language
                                 return (
                                     <li key={index} className="hover:bg-white">
-                                        <button className={`inline-flex justify-center w-full px-4 py-2 text-base text-black hover:bg-gray-200 ${white ? 'md:text-white md:hover:bg-gray-200 md:hover:text-black' : 'md:text-black md:hover:text-white md:hover:bg-zinc-700'} `}
+                                        <button className={`inline-flex justify-center w-full px-4 py-2 text-base text-white hover:bg-gray-200 hover:text-black ${white ? 'md:text-white md:hover:bg-gray-200 md:hover:text-black' : 'md:text-black md:hover:text-white md:hover:bg-zinc-700'} `}
                                             type="button"
                                             onClick={() => {
                                                 const days = 30
