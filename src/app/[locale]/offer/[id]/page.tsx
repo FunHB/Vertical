@@ -34,7 +34,7 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
             <main>
                 <section className="text-black bg-white pt-28 pb-16">
                     <h2 className="text-4xl md:text-5xl py-5 text-center">{title}</h2>
-                    {longDescription ? (<h4 className="whitespace-pre-line w-11/12 md:w-5/6 lg:w-3/4 m-auto text-lg md:text-xl pb-5 text-center">{longDescription}</h4>) : null}
+                    {longDescription ? (<h4 className="whitespace-pre-line w-11/12 md:w-5/6 lg:w-3/4 m-auto text-lg md:text-xl pb-5 text-justify">{longDescription}</h4>) : null}
 
                     <div>
                         {projects.map(project => {
