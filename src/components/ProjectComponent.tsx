@@ -59,11 +59,11 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                 keyBoardControl={true}
                 arrows={false}
                 centerMode={(width ?? 1920) > 768}
+                partialVisible={(width ?? 1920) < 768}
                 focusOnSelect={false}
                 rewind={false}
                 rewindWithAnimation={false}
                 rtl={false}
-                partialVisible={true}
                 shouldResetAutoplay={true}
                 sliderClass=""
                 slidesToSlide={1}
