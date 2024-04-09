@@ -36,6 +36,6 @@ export const transformOffer = (offer: any): Offer => {
                 image: (large ?? medium ?? small).url
             }
         },
-        projects: data ? data.map((project: any) => transformProject(project)) : []
+        projects: data && data.length > 0 ? data.map((project: any) => transformProject(project)) : []
     }
 }
