@@ -46,6 +46,7 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
       title: metadata('home-title'),
       description: metadata('home-description'),
       siteName: 'Vertical',
+      type: 'website',
       images: '/img/metadata.png',
       url: 'https://vertical-arch.com/'
     },
