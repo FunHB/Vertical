@@ -15,7 +15,7 @@ export default function OfferTile({ offer }: OfferTileProps) {
 
     return (
         <Link href={`/offer/${id}`}>
-            <article className="aspect-3/4 w-72 md:w-80 p-3 m-3 md:m-7 border-2 border-black flex flex-col justify-between">
+            <article className="aspect-6/7 w-72 md:w-80 p-3 m-3 md:m-7 border-2 border-black flex flex-col justify-between">
                 <div className="flex flex-col items-center">
                     <div className="relative w-20 h-20">
                         <Image

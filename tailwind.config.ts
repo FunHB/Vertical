@@ -23,7 +23,7 @@ const config: Config = {
       },
       aspectRatio: {
         '4/3': '4/3',
-        '3/4': '3/4'
+        '6/7': '6/7'
       }
     },
   },

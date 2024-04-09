@@ -4,6 +4,7 @@ import SocialMedia from "./SocialMedia"
 import Logo from "./Logo"
 import initTranslations from "../app/i18n"
 import TranslationsProvider from "../providers/TranslationsProvider"
+import Link from "next/link"
 
 const i18nNamespaces = ['navigation']
 
@@ -18,7 +19,9 @@ export default async function Header({ locale, white = false }: HeaderProps) {
     return (
         <TranslationsProvider locale={locale} namespaces={i18nNamespaces} resources={resources}>
             <header className={`flex flex-row items-start w-full p-3 z-20 fixed text-white bg-black/90 md:absolute ${white ? '' : 'md:text-black'} md:top-0 md:bg-black/0`}>
-                <Logo color={white ? 'white' : 'black'} className={`-top-5 w-16 h-44 mb-2 hidden lg:block`} />
+                <Link href={'/'}>
+                    <Logo color={white ? 'white' : 'black'} className={`-top-5 w-16 h-28 mb-2 hidden lg:block`} />
+                </Link>
                 <div className="flex-1 flex flex-row justify-between items-center">
                     <SocialMedia />
                     <div className="flex flex-row-reverse md:flex-row items-center">
