@@ -9,8 +9,6 @@ import initTranslations from '../i18n'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 
-import LogoSvg from '../../assets/img/Logo.svg'
-
 const inter = Inter({ subsets: ['latin'] })
 
 export function generateStaticParams() {
@@ -33,7 +31,7 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
     openGraph: {
       title: metadata('home-title'),
       description: metadata('home-description'),
-      images: LogoSvg,
+      images: '/img/metadata.png',
       type: 'website',
       url: 'https://vertical-arch.com/'
     },
