@@ -34,7 +34,7 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
   return {
     metadataBase: new URL('https://vertical-arch.com'),
     alternates: {
-      canonical: '/',
+      canonical: '/en',
       languages: {
         'en-US': '/en',
         'pl-PL': '/pl'
