@@ -45,6 +45,7 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
     openGraph: {
       title: metadata('home-title'),
       description: metadata('home-description'),
+      siteName: 'Vertical',
       images: '/img/metadata.png',
       url: 'https://vertical-arch.com/'
     },
