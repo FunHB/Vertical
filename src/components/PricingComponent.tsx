@@ -33,7 +33,7 @@ export default function PricingComponent({ pricing }: PricingComponentProps) {
             <div className={`absolute top-0 left-0 w-full h-full ${showPrice ? 'p-0' : 'p-10 md:p-16'} transition-all duration-500 ease-in-out transform`}>
                 <div className={`h-full bg-white/80 text-black flex flex-col justify-between items-center`}>
                     <div className='w-full text-center'>
-                        <h5 className='w-5/6 m-auto text-2xl md:text-5xl xl:text-[4rem] pt-3 md:pt-10 xl:pt-16 md:pb-5 uppercase'>{title}</h5>
+                        <h5 className='w-5/6 m-auto text-2xl md:text-5xl 2xl:text-[4rem] pt-3 md:pt-10 2xl:pt-16 md:pb-5 uppercase'>{title}</h5>
                         {!showPrice && subtitle ? <p className='text-base md:text-xl'>{subtitle}</p> : null}
                         {showPrice ? <p className='whitespace-pre-line text-sm md:text-2xl text-left pl-2 md:pl-5'>{description}</p> : null}
                     </div>
