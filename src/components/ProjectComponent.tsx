@@ -9,6 +9,7 @@ import { useClickOutside } from '../hooks/useClickOutside'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { IImage } from '../types/image'
+import { useWindowSize } from '../hooks/useWindowSize'
 
 interface ProjectComponentProps {
     project: Project
@@ -21,6 +22,8 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
     const [showFullscreen, setShowFullscreen] = useState(false)
     const [fullScreenImage, setfullScreenImage] = useState(0)
     const [rearrangedImages, setRearrangedImages] = useState<IImage[]>(images)
+
+    const { width } = useWindowSize()
 
     useEffect(() => {
         const array = images.slice()
@@ -55,7 +58,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                 autoPlaySpeed={5000}
                 keyBoardControl={true}
                 arrows={false}
-                centerMode={false}
+                centerMode={(width ?? 1920) > 768}
                 focusOnSelect={false}
                 rewind={false}
                 rewindWithAnimation={false}
@@ -92,12 +95,14 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                                 setShowFullscreen(true)
                                 setfullScreenImage(+((event.target as HTMLDivElement)?.dataset?.id ?? 0))
                             }}>
-                            <Image className='pointer-events-none object-contain'
-                                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                                alt={alternativeText ?? name}
-                                fill={true}
-                                sizes='(max-width: 764px) 90vw, 25vw'
-                            />
+                            {thumbnail ? (
+                                <Image className='pointer-events-none object-contain'
+                                    src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                    alt={alternativeText ?? name}
+                                    fill={true}
+                                    sizes='(max-width: 764px) 90vw, 25vw'
+                                />
+                            ) : null}
                         </div>
                     )
                 })}
