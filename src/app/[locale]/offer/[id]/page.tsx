@@ -26,20 +26,21 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
         notFound()
     }
 
-    const { title, projects } = offer
+    const { title, longDescription, projects } = offer
 
     return (
         <>
             <Header locale={locale} />
             <main>
                 <section className="text-black bg-white pt-28 pb-16">
-                    <h2 className="text-4xl md:text-5xl pt-5 pb-5 text-center">{title}</h2>
+                    <h2 className="text-4xl md:text-5xl py-5 text-center">{title}</h2>
+                    {longDescription ? (<h4 className="text-lg md:text-xl pb-5 text-center">{longDescription}</h4>) : null}
 
                     <div>
                         {projects.map(project => {
                             return (
                                 <div key={project.id} className="py-5 md:my-10">
-                                    <ProjectComponent project={{...project, images: project.images.filter(image => image.formats.thumbnail)}} />
+                                    <ProjectComponent project={{ ...project, images: project.images.filter(image => image.formats.thumbnail) }} />
                                 </div>
                             )
                         })}

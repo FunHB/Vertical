@@ -21,7 +21,7 @@ export const getOffer = async (offerId: number, language: string): Promise<Offer
 }
 
 export const transformOffer = (offer: any): Offer => {
-    const { id, attributes: { title, short_description, icon, projects } } = offer
+    const { id, attributes: { title, short_description, long_description, icon, projects } } = offer
     const { data: { attributes: { formats: { thumbnail, small, medium, large } } } } = icon
 
     const { data } = projects ?? {}
@@ -30,6 +30,7 @@ export const transformOffer = (offer: any): Offer => {
         id,
         title,
         shortDescription: short_description,
+        longDescription: long_description,
         icon: {
             formats: {
                 thumbnail: thumbnail.url,
