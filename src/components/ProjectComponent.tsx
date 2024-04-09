@@ -43,7 +43,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
         setShowFullscreen(false)
     })
 
-    return (
+    return images.length > 0 ? (
         <div className="">
             <h4 className="text-2xl md:text-4xl pt-1 pb-5 text-center">{title}</h4>
             { /* small carousel */}
@@ -95,14 +95,12 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                                 setShowFullscreen(true)
                                 setfullScreenImage(+((event.target as HTMLDivElement)?.dataset?.id ?? 0))
                             }}>
-                            {thumbnail ? (
-                                <Image className='pointer-events-none object-contain'
-                                    src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                                    alt={alternativeText ?? name}
-                                    fill={true}
-                                    sizes='(max-width: 764px) 90vw, 25vw'
-                                />
-                            ) : null}
+                            <Image className='pointer-events-none object-contain'
+                                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                alt={alternativeText ?? name}
+                                fill={true}
+                                sizes='(max-width: 764px) 90vw, 25vw'
+                            />
                         </div>
                     )
                 })}
@@ -159,7 +157,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                 </div>
             ) : null}
         </div>
-    )
+    ) : null
 }
 
 function RightArrow({ onClick }: ArrowProps) {

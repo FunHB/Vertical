@@ -37,11 +37,11 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
 
                     <div>
                         {projects.map(project => {
-                            return project.images && project.images.length > 0 ? (
+                            return (
                                 <div key={project.id} className="py-5 md:my-10">
-                                    <ProjectComponent project={project} />
+                                    <ProjectComponent project={{...project, images: project.images.filter(image => !!image)}} />
                                 </div>
-                            ) : null
+                            )
                         })}
                     </div>
                 </section>
