@@ -25,14 +25,15 @@ export const getImage = async (name: string): Promise<IImage | null> => {
 }
 
 export const transformImage = (image: any): IImage => {
-    const { name, caption, alternativeText, formats: { thumbnail, small, medium, large } } = image
+    const { name, caption, alternativeText, formats } = image
+    const { thumbnail, small, medium, large } = formats ?? {}
 
     return {
         name,
         caption,
         alternativeText,
         formats: {
-            thumbnail: thumbnail.url,
+            thumbnail: thumbnail?.url ?? '',
             small: small?.url,
             medium: medium?.url,
             large: large?.url
