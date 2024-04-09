@@ -47,7 +47,13 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
       description: metadata('home-description'),
       siteName: 'Vertical',
       type: 'website',
-      images: '/img/metadata.png',
+      images: [{
+        url: '/img/metadata.png',
+        width: 1200,
+        height: 630,
+        type: 'image/png',
+        secureUrl: '/img/metadata.png',
+      }],
       url: 'https://vertical-arch.com/'
     },
     keywords: metadata('keywords')
