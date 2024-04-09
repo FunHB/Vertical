@@ -39,7 +39,7 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
                         {projects.map(project => {
                             return (
                                 <div key={project.id} className="py-5 md:my-10">
-                                    <ProjectComponent project={{...project, images: project.images.filter(image => !!image)}} />
+                                    <ProjectComponent project={{...project, images: project.images.filter(image => image.formats.thumbnail)}} />
                                 </div>
                             )
                         })}

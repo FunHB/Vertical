@@ -33,7 +33,7 @@ export const transformImage = (image: any): IImage => {
         caption,
         alternativeText,
         formats: {
-            thumbnail: thumbnail?.url ?? '',
+            thumbnail: thumbnail?.url,
             small: small?.url,
             medium: medium?.url,
             large: large?.url
