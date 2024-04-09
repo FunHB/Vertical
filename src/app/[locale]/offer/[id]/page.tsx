@@ -38,7 +38,7 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
                     <div>
                         {projects.map(project => {
                             return (
-                                <div key={project.id}>
+                                <div key={project.id} className="py-5 md:my-10">
                                     <ProjectComponent project={project} />
                                 </div>
                             )

@@ -22,7 +22,8 @@ const config: Config = {
         'bounce-slow': 'bounce 2s linear infinite',
       },
       aspectRatio: {
-        '4/3': '4/3'
+        '4/3': '4/3',
+        '3/4': '3/4'
       }
     },
   },
