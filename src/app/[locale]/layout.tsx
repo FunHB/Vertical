@@ -9,6 +9,8 @@ import initTranslations from '../i18n'
 import Header from '@/src/components/Header'
 import Footer from '@/src/components/Footer'
 
+import type { Viewport } from 'next'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export function generateStaticParams() {
@@ -20,6 +22,10 @@ interface RootLayoutProps {
   params: {
     locale: string
   }
+}
+ 
+export const viewport: Viewport = {
+  themeColor: 'black',
 }
 
 export async function generateMetadata({ params: { locale } }: RootLayoutProps, parent: ResolvingMetadata): Promise<Metadata> {
