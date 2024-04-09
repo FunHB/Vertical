@@ -26,6 +26,14 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
   const { t: metadata } = await initTranslations(locale, ['metadata'])
 
   return {
+    metadataBase: new URL('https://vertical-arch.com'),
+    alternates: {
+      canonical: '/',
+      languages: {
+        'en-US': '/en',
+        'pl-PL': '/pl'
+      }
+    },
     title: metadata('home-title'),
     description: metadata('home-description'),
     openGraph: {
