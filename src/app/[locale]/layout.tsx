@@ -52,7 +52,7 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
         width: 1200,
         height: 630,
         type: 'image/png',
-        secureUrl: '/img/metadata.png',
+        secureUrl: 'https://vertical-arch.com/img/metadata.png',
       }],
       url: 'https://vertical-arch.com/'
     },
