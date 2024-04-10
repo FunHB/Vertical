@@ -3,12 +3,11 @@
 import 'react-multi-carousel/lib/styles.css'
 import Carousel from "react-multi-carousel"
 import Image from 'next/image'
-import { ProjectMedia } from '@/src/types/projectMedia'
-import Link from 'next/link'
 import { useWindowSize } from '@/src/hooks/useWindowSize'
+import { IImage } from '@/src/types/image'
 
 interface ProjectsCarouselProps {
-    images: ProjectMedia[]
+    images: IImage[]
 }
 
 export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
@@ -56,12 +55,12 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             containerClass=""
         >
             {images.map((image, index) => {
-                const { projectId, src, alt } = image
+                const { name, alternativeText, formats: { thumbnail, small, medium, large, huge } } = image
                 return (
                     <div key={index} className='relative w-full aspect-square flex items-center select-none'>
                         <Image
-                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${src}`}
-                            alt={alt ?? projectId}
+                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${huge ?? large ?? medium ?? small ?? thumbnail}`}
+                            alt={alternativeText ?? name}
                             fill={true}
                             sizes='20rem'
                             className='pointer-events-none object-contain md:group-hover:scale-[135%] transition-all ease-in-out duration-300'

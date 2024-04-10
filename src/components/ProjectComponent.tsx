@@ -153,10 +153,10 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                                 {rearrangedImages.map((image, index) => {
                                     if (!image) return null
 
-                                    const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image
+                                    const { name, alternativeText, formats: { thumbnail, small, medium, large, huge } } = image
                                     return (
                                         <Image key={index} className='pointer-events-none object-contain'
-                                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${huge ?? large ?? medium ?? small ?? thumbnail}`}
                                             alt={alternativeText ?? name}
                                             fill={true}
                                             sizes='(max-width: 764px) 90vw, 25vw'

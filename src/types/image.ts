@@ -7,5 +7,6 @@ export interface IImage {
         small?: string,
         medium?: string,
         large?: string,
+        huge?: string
     }
 }

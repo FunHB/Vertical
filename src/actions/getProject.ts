@@ -3,7 +3,7 @@
 import { IImage } from '../types/image'
 import { Project } from '../types/project'
 import { cmsRequest } from './cmsRequest'
-import { transformImage } from './getImage'
+import { transformImage } from './getImages'
 
 export const getProject = async (projectId: number, language: string): Promise<Project | null> => {
     try {

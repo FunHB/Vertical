@@ -2,7 +2,7 @@
 
 import { Pricing } from '../types/Pricing'
 import { cmsRequest } from './cmsRequest'
-import { transformImage } from './getImage'
+import { transformImage } from './getImages'
 
 export const getPricing = async (pricingId: number, language: string): Promise<Pricing | null> => {
     try {

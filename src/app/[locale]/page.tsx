@@ -4,9 +4,9 @@ import { getOffers } from "@/src/actions/getOffers"
 import ProjectsCarousel from "@/src/components/carousels/ProjectsCarousel"
 import OfferTile from "@/src/components/OfferTile"
 import BackgroundCarousel from "@/src/components/carousels/BackgroundCarousel"
-import { getHomeProjects } from "@/src/actions/getHomeProjects"
 import WorkProcess from "@/src/components/WorkProcess"
 import Header from "@/src/components/Header"
+import { getImages } from "@/src/actions/getImages"
 
 interface HomeParams {
     params: {
@@ -19,7 +19,7 @@ export default async function Home({ params: { locale } }: HomeParams) {
     const { t: strings, resources: homeResources } = await initTranslations(locale, ['home'])
 
     const offers = await getOffers(locale)
-    const images = await getHomeProjects()
+    const images = await getImages('home')
 
     return (
         <>

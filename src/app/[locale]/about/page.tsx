@@ -1,4 +1,4 @@
-import { getImage } from "@/src/actions/getImage"
+import { getImages } from "@/src/actions/getImages"
 import initTranslations from "@/src/app/i18n"
 import Header from "@/src/components/Header"
 import Triangle from "@/src/components/Triangle"
@@ -24,9 +24,9 @@ export async function generateMetadata({ params: { locale } }: AboutParams): Pro
 export default async function About({ params: { locale } }: AboutParams) {
     const { t: strings } = await initTranslations(locale, i18nNamespaces)
 
-    const image = await getImage('about')
+    const image = (await getImages('about'))[0]
 
-    const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image ?? { formats: {} }
+    const { name, alternativeText, formats: { thumbnail, small, medium, large, huge } } = image ?? { formats: {} }
 
     return (
         <>
@@ -60,7 +60,7 @@ export default async function About({ params: { locale } }: AboutParams) {
 
                                 <div className="relative aspect-video">
                                     <Image
-                                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${huge ?? large ?? medium ?? small ?? thumbnail}`}
                                         alt={alternativeText ?? name ?? 'about'}
                                         fill={true}
                                         sizes="(max-width: 764px) 83.33%, (max-width: 1024px) 66.66%, 50%"
