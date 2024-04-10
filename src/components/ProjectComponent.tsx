@@ -49,7 +49,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
             <h4 className="text-2xl md:text-4xl pt-1 pb-5 text-center">{title}</h4>
             { /* small carousel */}
             <Carousel
-                className='justify-center'
+                className=''
                 additionalTransfrom={0}
                 swipeable={true}
                 draggable={true}
