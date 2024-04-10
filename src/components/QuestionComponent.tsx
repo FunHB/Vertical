@@ -104,7 +104,7 @@ export default function QuestionComponent({ question, index }: QuestionComponent
                     <h4 className="font-bold text-right text-xl md:text-3xl">{header}</h4>
                 </div>
                 <div className='z-10 w-screen md:w-1/2 pl-5 pr-5 mt-5'>
-                    <p className="text-justify text-base md:text-lg" style={{ direction: 'rtl' }}>{answer}</p>
+                    <p className="text-justify text-base md:text-lg" style={{ direction: 'rtl' }}>{answer}&lrm;</p>
                 </div>
             </article>
         )
@@ -185,7 +185,7 @@ export default function QuestionComponent({ question, index }: QuestionComponent
                     <h4 className="pt-10 font-bold text-right text-xl md:text-3xl">{header}</h4>
                 </div>
                 <div className='w-screen md:w-5/6 mt-5 px-5 md:pr-10'>
-                    <p className="text-justify text-base md:text-lg">{answer}</p>
+                    <p className="text-justify text-base md:text-lg" style={{ direction: 'rtl' }}>{answer}&lrm;</p>
                 </div>
 
                 <div className="hidden md:block mb-32 xl:mb-96">

@@ -22,6 +22,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
     const [showFullscreen, setShowFullscreen] = useState(false)
     const [fullScreenImage, setfullScreenImage] = useState(0)
     const [rearrangedImages, setRearrangedImages] = useState<IImage[]>(images)
+    const [isDragging, setIsDragging] = useState(false)
 
     const { width } = useWindowSize()
 
@@ -48,6 +49,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
             <h4 className="text-2xl md:text-4xl pt-1 pb-5 text-center">{title}</h4>
             { /* small carousel */}
             <Carousel
+                className='justify-center'
                 additionalTransfrom={0}
                 swipeable={true}
                 draggable={true}
@@ -74,26 +76,34 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                         partialVisibilityGutter: 50 // this is needed to tell the amount of px that should be visible.
                     },
                     tablet: {
-                        breakpoint: { max: 1200, min: 464 },
+                        breakpoint: { max: 1024, min: 768 },
                         items: 4,
                         partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                     },
                     mobile: {
-                        breakpoint: { max: 464, min: 0 },
+                        breakpoint: { max: 768, min: 0 },
                         items: 2,
                         partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                     }
                 }}
                 itemClass="cursor-grab flex justify-center"
                 containerClass=""
+                afterChange={() => {
+                    setIsDragging(false)
+                }}
+                beforeChange={() => {
+                    setIsDragging(true)
+                }}
             >
                 {images.map((image, index) => {
                     const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image
                     return (
                         <div key={index} data-id={index} className='relative aspect-square flex items-center w-full select-none'
                             onClick={(event) => {
-                                setShowFullscreen(true)
-                                setfullScreenImage(+((event.target as HTMLDivElement)?.dataset?.id ?? 0))
+                                if (!isDragging) {
+                                    setShowFullscreen(true)
+                                    setfullScreenImage(+((event.target as HTMLDivElement)?.dataset?.id ?? 0))
+                                }
                             }}>
                             <Image className='pointer-events-none object-contain'
                                 src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
@@ -104,59 +114,61 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                         </div>
                     )
                 })}
-            </Carousel>
+            </Carousel >
 
             { /* fullscreen carousel */}
-            {showFullscreen ? (
-                <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 py-32 z-50'>
-                    <div className='aspect-square w-[90vw] sm:w-auto sm:h-[90vh] flex flex-col justify-center items-center overflow-hidden' ref={ClickOutsideRef}>
-                        <Carousel
-                            additionalTransfrom={0}
-                            swipeable={true}
-                            draggable={true}
-                            minimumTouchDrag={80}
-                            showDots={false}
-                            infinite={true}
-                            autoPlay={false}
-                            keyBoardControl={true}
-                            arrows={true}
-                            centerMode={false}
-                            focusOnSelect={false}
-                            rewind={false}
-                            rewindWithAnimation={false}
-                            rtl={false}
-                            sliderClass=""
-                            slidesToSlide={1}
-                            responsive={{
-                                desktop: {
-                                    breakpoint: { max: 3000, min: 0 },
-                                    items: 1,
-                                    partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
-                                }
-                            }}
-                            itemClass="cursor-grab aspect-square flex justify-center items-center select-none"
-                            containerClass="relative w-full h-full overflow-hidden"
-                            customLeftArrow={<LeftArrow />}
-                            customRightArrow={<RightArrow />}
-                        >
-                            {rearrangedImages.map((image, index) => {
-                                if (!image) return null
+            {
+                showFullscreen ? (
+                    <div className='fixed w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-black/70 z-50'>
+                        <div className='aspect-square w-[90vw] sm:w-auto sm:h-[90vh] flex flex-col justify-center items-center overflow-hidden' ref={ClickOutsideRef}>
+                            <Carousel
+                                additionalTransfrom={0}
+                                swipeable={true}
+                                draggable={true}
+                                minimumTouchDrag={80}
+                                showDots={false}
+                                infinite={true}
+                                autoPlay={false}
+                                keyBoardControl={true}
+                                arrows={true}
+                                centerMode={false}
+                                focusOnSelect={true}
+                                rewind={false}
+                                rewindWithAnimation={false}
+                                rtl={false}
+                                sliderClass=""
+                                slidesToSlide={1}
+                                responsive={{
+                                    desktop: {
+                                        breakpoint: { max: 3000, min: 0 },
+                                        items: 1,
+                                        partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
+                                    }
+                                }}
+                                itemClass="cursor-grab aspect-square flex justify-center items-center select-none"
+                                containerClass="relative w-full h-full overflow-hidden"
+                                customLeftArrow={<LeftArrow />}
+                                customRightArrow={<RightArrow />}
+                            >
+                                {rearrangedImages.map((image, index) => {
+                                    if (!image) return null
 
-                                const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image
-                                return (
-                                    <Image key={index} className='pointer-events-none object-contain'
-                                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
-                                        alt={alternativeText ?? name}
-                                        fill={true}
-                                        sizes='(max-width: 764px) 90vw, 25vw'
-                                    />
-                                )
-                            })}
-                        </Carousel>
+                                    const { name, alternativeText, formats: { thumbnail, small, medium, large } } = image
+                                    return (
+                                        <Image key={index} className='pointer-events-none object-contain'
+                                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
+                                            alt={alternativeText ?? name}
+                                            fill={true}
+                                            sizes='(max-width: 764px) 90vw, 25vw'
+                                        />
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
                     </div>
-                </div>
-            ) : null}
-        </div>
+                ) : null
+            }
+        </div >
     ) : null
 }
 

@@ -69,7 +69,7 @@ export default async function About({ params: { locale } }: AboutParams) {
                             </div>
 
                             <div className="absolute w-5/6 md:w-3/4 lg:w-1/2 -bottom-10 lg:-bottom-5 right-0">
-                                <p className="whitespace-pre text-right text-base mr-12">{strings('about-image-caption')}</p>
+                                <p className="whitespace-pre-line text-right text-base mr-5 md:mr-12">{strings('about-image-caption')}</p>
                             </div>
                         </div>
                     ) : null}
