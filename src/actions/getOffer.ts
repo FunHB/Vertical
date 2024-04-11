@@ -4,24 +4,26 @@ import { Offer } from '../types/offer'
 import { cmsRequest } from './cmsRequest'
 import { transformProject } from './getProject'
 
-export const getOffer = async (offerId: number, language: string): Promise<Offer | null> => {
+export const getOffer = async (offerId: number): Promise<Record<string, Offer>> => {
     try {
         const response = await cmsRequest(`offers/${offerId}`, 'GET', {
-            'populate': 'icon,projects,projects.images',
-            'locale': language
+            'populate': 'icon,projects,projects.images,localizations,localizations.projects,localizations.projects.images,localizations.icon'
         })
 
-        const offer: Offer = transformOffer(response.data)
+        const offer = Object.assign({}, ...([
+            transformOffer(response.data),
+            ...response.data.attributes.localizations.data.map((locale: any) => transformOffer(locale))
+        ] as Offer[]).map(locale => { return { [locale.locale]: locale }}))
 
         return offer
     } catch (exception) {
         console.error(exception)
-        return null
+        return {}
     }
 }
 
 export const transformOffer = (offer: any): Offer => {
-    const { id, attributes: { title, short_description, long_description, icon, projects } } = offer
+    const { id, attributes: { title, short_description, long_description, icon, projects, locale } } = offer
     const { data: { attributes: { formats: { thumbnail, small, medium, large } } } } = icon
 
     const { data } = projects ?? {}
@@ -37,6 +39,7 @@ export const transformOffer = (offer: any): Offer => {
                 image: (large ?? medium ?? small).url
             }
         },
-        projects: data && data.length > 0 ? data.map((project: any) => transformProject(project)) : []
+        projects: data && data.length > 0 ? data.map((project: any) => transformProject(project)) : [],
+        locale
     }
 }

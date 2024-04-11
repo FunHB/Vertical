@@ -10,6 +10,7 @@ export interface Offer {
             thumbnail: string,
             image: string
         }
-    },
+    }
     projects: Project[]
+    locale: string
 }

@@ -12,7 +12,7 @@ interface OfferPageParams {
 }
 
 export async function generateMetadata({ params: { locale, id } }: OfferPageParams): Promise<Metadata> {
-    const { title } = await getOffer(id, locale) ?? {}
+    const { title } = (await getOffer(id))[locale] ?? {}
 
     return {
         title: `${title}`,
@@ -20,7 +20,7 @@ export async function generateMetadata({ params: { locale, id } }: OfferPagePara
 }
 
 export default async function OfferPage({ params: { locale, id } }: OfferPageParams) {
-    const offer = await getOffer(id, locale)
+    const offer = (await getOffer(id))[locale]
 
     if (!offer) {
         notFound()
