@@ -13,7 +13,7 @@ export const getSocialMedia = async (): Promise<SocialMedia[]> => {
             return { link: link_url, type: SocialMediaType[website as keyof typeof SocialMediaType] } as SocialMedia
         })
 
-        return socialMedia
+        return socialMedia.sort((a, b) => a.index - b.index)
     } catch (exception) {
         console.error(exception)
         return []

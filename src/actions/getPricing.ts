@@ -11,17 +11,17 @@ export const getPricing = async (pricingId: number, language: string): Promise<P
             'locale': language
         })
 
-        const offer: Pricing = transformPricing(response.data)
+        const pricing: Pricing = transformPricing(response.data)
 
-        return offer
+        return pricing
     } catch (exception) {
         console.error(exception)
         return null
     }
 }
 
-export const transformPricing = (offer: any): Pricing => {
-    const { id, attributes: { title, subtitle, price, description, background_image } } = offer
+export const transformPricing = (pricing: any): Pricing => {
+    const { id, attributes: { index, title, subtitle, price, description, background_image } } = pricing
     const { data: { id: imageId, attributes } } = background_image
 
     return {
@@ -30,6 +30,7 @@ export const transformPricing = (offer: any): Pricing => {
         subtitle,
         price,
         description,
-        backgroundImage: transformImage({ imageId, ...attributes })
+        backgroundImage: transformImage({ imageId, ...attributes }),
+        index
     }
 }

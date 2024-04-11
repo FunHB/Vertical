@@ -15,7 +15,7 @@ export const getOffers = async (language: string): Promise<Offer[]> => {
             return transformOffer(data)
         })
 
-        return offers
+        return offers.sort((a, b) => a.index - b.index)
     } catch (exception) {
         console.error(exception)
         return []

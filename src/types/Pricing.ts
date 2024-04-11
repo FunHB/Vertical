@@ -7,4 +7,5 @@ export interface Pricing {
     price: number
     description: string
     backgroundImage: IImage
+    index: number
 }

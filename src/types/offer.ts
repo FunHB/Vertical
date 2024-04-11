@@ -9,4 +9,5 @@ export interface Offer {
     icon: IImage
     projects: Project[]
     locale: string
+    index: number
 }

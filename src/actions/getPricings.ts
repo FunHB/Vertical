@@ -11,11 +11,11 @@ export const getPricings = async (language: string): Promise<Pricing[]> => {
             'locale': language
         })
 
-        const offers: Pricing[] = response.data.map((data: any) => {
+        const pricing: Pricing[] = response.data.map((data: any) => {
             return transformPricing(data)
         })
 
-        return offers
+        return pricing.sort((a, b) => a.index - b.index)
     } catch (exception) {
         console.error(exception)
         return []
