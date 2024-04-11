@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 671.9 571" style="enable-background:new 0 0 671.9 571;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;}
+	
+		.st1{clip-path:url(#SVGID_2_);fill:none;stroke:#FFFFFF;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st2{clip-path:url(#SVGID_2_);fill:none;stroke:#000000;stroke-width:0.5669;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<defs>
+		<polyline id="SVGID_1_" points="0,0 671.9,0 671.9,571 0,571 0,0 		"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<path class="st0" d="M377.4,245.1l-0.8,11.8l30.6-12l-28-26.4l-1.6,22.3l-11.4-18.4l-16.7,25.8L377.4,245.1 M371.2,281.6l-0.5-30.8
+		l-23.4,19.9L371.2,281.6 M0,461.1l515.9-354l51.7,36l-5.3-67.9L671.9,0v571l-121.8-19.9l-7.8-42.1L512,544.8L0,461.1"/>
+	<line class="st1" x1="0" y1="0" x2="671.9" y2="0"/>
+	<line class="st1" x1="671.9" y1="0" x2="671.9" y2="576.7"/>
+	<line class="st1" x1="677.6" y1="-5.7" x2="-5.7" y2="-5.7"/>
+	<line class="st1" x1="0" y1="0" x2="0" y2="576.7"/>
+	<line class="st2" x1="380.2" y1="244.8" x2="366.3" y2="222.4"/>
+	<line class="st2" x1="366.3" y1="222.4" x2="349.6" y2="248.3"/>
+	<line class="st2" x1="349.6" y1="248.3" x2="380.2" y2="244.8"/>
+</g>
+</svg>

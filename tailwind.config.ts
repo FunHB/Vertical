@@ -11,8 +11,8 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.jpg')",
-        'faq-right': "url('/img/right-triangle.png')",
-        'faq-left': "url('/img/left-triangle.png')",
+        'faq-right': "url('/img/triangle-right.svg')",
+        'faq-left': "url('/img/triangle-left.svg')",
       },
       fontFamily: {
         'caviar-dreams': ['CaviarDreams', 'sans-serif'],
