@@ -2,6 +2,7 @@
 
 import { Offer } from '../types/offer'
 import { cmsRequest } from './cmsRequest'
+import { transformImage } from './getImages'
 import { transformProject } from './getProject'
 
 export const getOffer = async (offerId: number): Promise<Record<string, Offer>> => {
@@ -13,7 +14,7 @@ export const getOffer = async (offerId: number): Promise<Record<string, Offer>> 
         const offer = Object.assign({}, ...([
             transformOffer(response.data),
             ...response.data.attributes.localizations.data.map((locale: any) => transformOffer(locale))
-        ] as Offer[]).map(locale => { return { [locale.locale]: locale }}))
+        ] as Offer[]).map(locale => { return { [locale.locale]: locale } }))
 
         return offer
     } catch (exception) {
@@ -24,7 +25,7 @@ export const getOffer = async (offerId: number): Promise<Record<string, Offer>> 
 
 export const transformOffer = (offer: any): Offer => {
     const { id, attributes: { title, short_description, long_description, icon, projects, locale } } = offer
-    const { data: { attributes: { formats: { thumbnail, small, medium, large } } } } = icon
+    const { id: iconId, data: { attributes } } = icon
 
     const { data } = projects ?? {}
 
@@ -33,12 +34,7 @@ export const transformOffer = (offer: any): Offer => {
         title,
         shortDescription: short_description,
         longDescription: long_description,
-        icon: {
-            formats: {
-                thumbnail: thumbnail.url,
-                image: (large ?? medium ?? small).url
-            }
-        },
+        icon: transformImage({ iconId, ...attributes }),
         projects: data && data.length > 0 ? data.map((project: any) => transformProject(project)) : [],
         locale
     }

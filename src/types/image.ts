@@ -1,7 +1,7 @@
 export interface IImage {
     name: string
-    caption: string
-    alternativeText: string
+    caption?: string
+    alternativeText?: string
     formats: {
         thumbnail?: string,
         small?: string,

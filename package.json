@@ -8,7 +8,7 @@
     "build": "npm run i18nexus && next build",
     "start": "npm run i18nexus && next start",
     "lint": "next lint",
-    "update": "git pull && npm run build && npm start"
+    "update": "git pull && npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

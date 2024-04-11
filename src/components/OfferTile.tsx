@@ -12,6 +12,7 @@ interface OfferTileProps {
 export default function OfferTile({ offer }: OfferTileProps) {
     const { t } = useTranslation('home')
     const { id, title, shortDescription, icon } = offer
+    const { formats: { thumbnail, small, medium, large } } = icon
 
     return (
         <Link href={`/offer/${id}`}>
@@ -19,7 +20,7 @@ export default function OfferTile({ offer }: OfferTileProps) {
                 <div className="flex flex-col items-center">
                     <div className="relative w-20 h-20">
                         <Image
-                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${icon.formats.image}`}
+                            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${large ?? medium ?? small ?? thumbnail}`}
                             alt={title}
                             fill={true}
                             sizes="6rem"

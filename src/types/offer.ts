@@ -1,3 +1,4 @@
+import { IImage } from './image'
 import { Project } from './project'
 
 export interface Offer {
@@ -5,12 +6,7 @@ export interface Offer {
     title: string
     shortDescription: string
     longDescription: string
-    icon: {
-        formats: {
-            thumbnail: string,
-            image: string
-        }
-    }
+    icon: IImage
     projects: Project[]
     locale: string
 }
