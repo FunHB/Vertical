@@ -11,7 +11,6 @@ interface OfferPageParams {
     }
 }
 
-export const dynamic = true
 export const dynamicParams = true
 export const revalidate = 60 * 60 * 6 /* hours */ + 60 * 0 /* minutes */ + 0 /* seconds */
 
