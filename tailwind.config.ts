@@ -14,10 +14,6 @@ const config: Config = {
         'faq-right': "url('/img/triangle-right.svg')",
         'faq-left': "url('/img/triangle-left.svg')",
       },
-      fontFamily: {
-        'caviar-dreams': ['CaviarDreams', 'sans-serif'],
-        'logo': ['Times New Roman', 'serif']
-      },
       animation: {
         'bounce-slow': 'bounce 2s linear infinite',
       },
