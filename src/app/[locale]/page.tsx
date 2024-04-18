@@ -50,8 +50,8 @@ export default async function Home({ params: { locale } }: HomeParams) {
 
                 <section className="text-black bg-white border-t-2 border-black pt-5 pb-20 select-none">
                     <h2 className="text-3xl md:text-4xl text-center mb-2 md:mb-5">{strings('example-header')}</h2>
-                    <div className="w-full">
-                        <div className="bg-white">
+                    <div className="w-full select-none">
+                        <div className="bg-white select-none">
                             <ProjectsCarousel images={images} />
                         </div>
                     </div>
