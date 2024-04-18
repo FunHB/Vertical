@@ -15,6 +15,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
 
     return images && images.length > 0 ? (
         <Carousel
+            className='select-none'
             additionalTransfrom={0}
             swipeable={true}
             draggable={true}
@@ -52,7 +53,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
                 }
             }}
             itemClass="group cursor-grab px-3 xl:px-5 py-8 sm:py-20 flex justify-center -z-10 hover:z-10 transition-all duration-300"
-            containerClass=""
+            containerClass="select-none"
         >
             {images.map((image, index) => {
                 const { name, alternativeText, formats: { thumbnail, small, medium, large, huge } } = image
