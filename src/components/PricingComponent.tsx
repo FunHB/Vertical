@@ -19,7 +19,7 @@ export default function PricingComponent({ pricing }: PricingComponentProps) {
     const [showPrice, setShowPrice] = useState(false)
 
     return (
-        <div id={`${id}`} className='group relative aspect-4/3 w-11/12 sm:w-5/6 lg:w-1/2 2xl:w-[45%] m-3 md:m-5 overflow-hidden'
+        <div id={`${id}`} className='group relative aspect-4/3 w-11/12 sm:w-5/6 lg:w-1/2 2xl:w-[45%] m-3 md:m-5 overflow-hidden select-none cursor-pointer'
             onClick={() => {
                 setShowPrice(!showPrice)
             }}>

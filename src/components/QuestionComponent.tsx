@@ -112,7 +112,7 @@ export default function QuestionComponent({ question, index }: QuestionComponent
 
     if (index % 4 == 2) {
         return (
-            <article className="absolute flex flex-col items-start w-[800px] md:w-[1344px] h-[800px] -mt-32 md:mt-0 text-white bg-faq-left bg-contain bg-no-repeat bg-left-top">
+            <article className="absolute flex flex-col items-start w-[800px] md:w-[1344px] h-[800px] -mt-32 -ml-1 md:mt-0 text-white bg-faq-left bg-contain bg-no-repeat bg-left-top">
                 <div className="md:hidden">
                     <Triangle className="absolute mt-96"
                         color={"#000"}
