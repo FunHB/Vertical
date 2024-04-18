@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'footer-texture': "url('/img/footer-texture.jpg')",
+        'footer-texture': "url('/img/footer-texture.avif')",
         'faq-right': "url('/img/triangle-right.svg')",
         'faq-left': "url('/img/triangle-left.svg')",
       },
