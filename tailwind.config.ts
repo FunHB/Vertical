@@ -23,26 +23,6 @@ const config: Config = {
       }
     },
   },
-  plugins: [
-    plugin(function ({ addUtilities }) {
-      addUtilities({
-        '.horizontal-tb': {
-          writingMode: 'horizontal-tb',
-        },
-        '.vertical-rl': {
-          writingMode: 'vertical-rl'
-        },
-        '.vertical-lr': {
-          writingMode: 'vertical-lr'
-        },
-        '.orientation-mixed': {
-          'text-orientation': 'mixed'
-        },
-        '.orientation-upright': {
-          'text-orientation': 'upright'
-        }
-      })
-    })
-  ],
+  plugins: [],
 }
 export default config
