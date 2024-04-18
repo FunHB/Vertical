@@ -15,7 +15,6 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
 
     return images && images.length > 0 ? (
         <Carousel
-            className='select-none'
             additionalTransfrom={0}
             swipeable={true}
             draggable={true}
