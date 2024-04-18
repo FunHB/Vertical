@@ -32,7 +32,6 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             rewindWithAnimation={false}
             rtl={false}
             shouldResetAutoplay={false}
-            sliderClass=""
             slidesToSlide={1}
             responsive={{
                 desktop: {
@@ -51,8 +50,9 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
                     partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
                 }
             }}
-            itemClass="group cursor-grab px-3 xl:px-5 py-8 sm:py-20 flex justify-center -z-10 hover:z-10 transition-all duration-300"
+            itemClass="group cursor-grab px-3 xl:px-5 py-8 sm:py-20 flex justify-center -z-10 hover:z-10 transition-all duration-300 select-none"
             containerClass="select-none"
+            sliderClass="select-none"
         >
             {images.map((image, index) => {
                 const { name, alternativeText, formats: { thumbnail, small, medium, large, huge } } = image
