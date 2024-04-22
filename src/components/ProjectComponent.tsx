@@ -159,7 +159,7 @@ export default function ProjectComponent({ project }: ProjectComponentProps) {
                                             src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${huge ?? large ?? medium ?? small ?? thumbnail}`}
                                             alt={alternativeText ?? name}
                                             fill={true}
-                                            sizes='(max-width: 764px) 90vw, 25vw'
+                                            sizes='(max-width: 764px) 90vw, 80vw'
                                         />
                                     )
                                 })}
