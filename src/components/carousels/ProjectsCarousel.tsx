@@ -26,7 +26,7 @@ export default function ProjectsCarousel({ images }: ProjectsCarouselProps) {
             keyBoardControl={true}
             arrows={false}
             centerMode={(width ?? 0) > 768}
-            partialVisbile={(width ?? 0) < 768}
+            partialVisible={(width ?? 0) < 768}
             focusOnSelect={false}
             rewind={false}
             rewindWithAnimation={false}
