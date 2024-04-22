@@ -42,7 +42,7 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
     openGraph: {
       title: metadata('home-title'),
       description: metadata('home-description'),
-      siteName: 'Vertical',
+      siteName: 'Vertical Design Studio',
       type: 'website',
       images: [{
         url: '/img/metadata.png',
