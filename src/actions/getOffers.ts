@@ -4,10 +4,10 @@ import { Offer } from '../types/offer'
 import { cmsRequest } from './cmsRequest'
 import { transformOffer } from './getOffer'
 
-export const getOffers = async (language: string): Promise<Offer[]> => {
+export const getOffers = async (language: string, populate = 'icon'): Promise<Offer[]> => {
     try {
         const response = await cmsRequest('offers', 'GET', {
-            'populate': 'icon',
+            'populate': populate,
             'locale': language
         })
 

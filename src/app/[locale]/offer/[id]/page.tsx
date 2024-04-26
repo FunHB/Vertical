@@ -3,6 +3,7 @@ import Header from "@/src/components/Header"
 import ProjectComponent from "@/src/components/ProjectComponent"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { jsonLd } from "../../layout"
 
 interface OfferPageParams {
     params: {
@@ -32,10 +33,23 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
         notFound()
     }
 
-    const { title, longDescription, projects } = localeOffer
+    const { title, shortDescription, longDescription, projects, createdAt, updatedAt } = localeOffer
 
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd(
+                        '/offer/',
+                        title,
+                        shortDescription,
+                        locale,
+                        createdAt,
+                        updatedAt
+                    ))
+                }}
+            />
             <Header locale={locale} />
             <main>
                 <section className="text-black bg-white pt-28 pb-16">

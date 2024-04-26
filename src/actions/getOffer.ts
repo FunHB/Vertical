@@ -24,7 +24,7 @@ export const getOffer = async (offerId: number): Promise<Record<string, Offer>> 
 }
 
 export const transformOffer = (offer: any): Offer => {
-    const { id, attributes: { index, title, short_description, long_description, icon, projects, locale } } = offer
+    const { id, attributes: { index, title, short_description, createdAt, updatedAt, long_description, icon, projects, locale, localizations } } = offer
     const { id: iconId, data: { attributes } } = icon
 
     const { data } = projects ?? {}
@@ -37,6 +37,9 @@ export const transformOffer = (offer: any): Offer => {
         icon: transformImage({ iconId, ...attributes }),
         projects: data && data.length > 0 ? data.map((project: any) => transformProject(project)) : [],
         locale,
-        index
+        index,
+        createdAt: new Date(createdAt),
+        updatedAt: new Date(updatedAt),
+        localizations: localizations.data.map((localization: any) => transformOffer(localization))
     }
 }

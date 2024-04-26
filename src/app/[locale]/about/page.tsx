@@ -4,6 +4,7 @@ import Header from "@/src/components/Header"
 import Triangle from "@/src/components/Triangle"
 import { Metadata } from "next"
 import Image from 'next/image'
+import { jsonLd } from "../layout"
 
 const i18nNamespaces: string[] = ['about']
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params: { locale } }: AboutParams): Pro
 
 export default async function About({ params: { locale } }: AboutParams) {
     const { t: strings } = await initTranslations(locale, i18nNamespaces)
+    const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     const image = (await getImages('about'))[0]
 
@@ -30,6 +32,19 @@ export default async function About({ params: { locale } }: AboutParams) {
 
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd(
+                        '/about/',
+                        metadata('about-title'),
+                        metadata('about-description'),
+                        locale,
+                        new Date('2024-04-22T17:38:48.063Z'),
+                        new Date()
+                    ))
+                }}
+            />
             <Header locale={locale} />
             <main className="">
                 <section className="text-black bg-white pt-28 overflow-hidden">

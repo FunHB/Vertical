@@ -10,4 +10,7 @@ export interface Offer {
     projects: Project[]
     locale: string
     index: number
+    createdAt: Date
+    updatedAt: Date
+    localizations?: Offer[]
 }

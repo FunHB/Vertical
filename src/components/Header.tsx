@@ -1,6 +1,6 @@
 import LanguageChanger from "./LanguageChanger"
 import Navbar from "./Navbar"
-import SocialMedia from "./SocialMedia"
+import SocialMediaComponent from "./SocialMediaComponent"
 import Logo from "./Logo"
 import initTranslations from "../app/i18n"
 import TranslationsProvider from "../providers/TranslationsProvider"
@@ -23,7 +23,7 @@ export default async function Header({ locale, white = false }: HeaderProps) {
                     <Logo color={white ? 'white' : 'black'} className={`-top-5 w-20 mb-2 hidden lg:block`} />
                 </Link>
                 <div className="flex-1 flex flex-row justify-between items-center">
-                    <SocialMedia />
+                    <SocialMediaComponent />
                     <div className="flex flex-row-reverse md:flex-row items-center">
                         <Navbar />
                         <LanguageChanger white={white} />

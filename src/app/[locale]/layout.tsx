@@ -7,6 +7,7 @@ import TranslationsProvider from '@/src/providers/TranslationsProvider'
 import initTranslations from '../i18n'
 import localFont from 'next/font/local'
 import Footer from '@/src/components/Footer'
+import { Graph, Organization, WebSite, WithContext } from 'schema-dts'
 
 import type { Viewport } from 'next'
 
@@ -20,7 +21,7 @@ interface RootLayoutProps {
     locale: string
   }
 }
- 
+
 export const viewport: Viewport = {
   themeColor: 'black',
 }
@@ -45,11 +46,11 @@ export async function generateMetadata({ params: { locale } }: RootLayoutProps, 
       siteName: 'Vertical Design Studio',
       type: 'website',
       images: [{
-        url: '/img/metadata.png',
+        url: '/img/logo.png',
         width: 1200,
         height: 630,
         type: 'image/png',
-        secureUrl: 'https://vertical-arch.com/img/metadata.png',
+        secureUrl: 'https://vertical-arch.com/img/logo.png',
       }],
       url: 'https://vertical-arch.com/'
     },
@@ -79,4 +80,43 @@ export default async function RootLayout({ children, params: { locale } }: RootL
       </body>
     </html>
   )
+}
+
+export const jsonLd = (url: string, title: string, description: string, locale: string, datePublished: Date, dateModified: Date): Graph => {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "Organization",
+      "@id": "https://www.vertical-arch.com/#organization",
+      name: title,
+      url: `https://www.vertical-arch.com/`,
+      sameAs: ["https://www.facebook.com/BiuroVertical"],
+      logo: {
+        "@type": "ImageObject",
+        "@id": "https://www.vertical-arch.com/#logo",
+        url: "https://www.vertical-arch.com/img/logo.png",
+        caption: title
+      },
+      image: { "@id": "https://www.vertical-arch.com/#logo" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.vertical-arch.com/#website",
+      url: "https://www.vertical-arch.com/",
+      name: title,
+      publisher: { "@id": "https://www.vertical-arch.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `https://www.vertical-arch.com/${locale}${url}#webpage`,
+      url: `https://www.vertical-arch.com/${locale}${url}`,
+      inLanguage: locale,
+      name: title,
+      isPartOf: { "@id": "https://www.vertical-arch.com/#website" },
+      about: { "@id": "https://www.vertical-arch.com/#organization" },
+      datePublished: datePublished.toISOString(),
+      dateModified: dateModified.toISOString(),
+      description: description
+    }]
+  }
 }

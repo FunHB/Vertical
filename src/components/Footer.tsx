@@ -1,4 +1,4 @@
-import SocialMedia from "./SocialMedia"
+import SocialMediaComponent from "./SocialMediaComponent"
 import Navbar from "./Navbar"
 import Link from "next/link"
 import Logo from "./Logo"
@@ -39,7 +39,7 @@ export default async function Footer({ locale }: FooterProps) {
                                 <p>(+48) 575 313 091</p>
                             </div>
                             <div className="hidden md:block mt-7">
-                                <SocialMedia box={true} />
+                                <SocialMediaComponent box={true} />
                             </div>
                         </div>
                     </div>

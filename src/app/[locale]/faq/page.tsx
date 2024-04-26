@@ -3,6 +3,7 @@ import initTranslations from "@/src/app/i18n"
 import Header from "@/src/components/Header"
 import { Metadata } from "next"
 import FAQ from "@/src/components/faq"
+import { jsonLd } from "../layout"
 
 const i18nNamespaces: string[] = ['faq']
 
@@ -22,6 +23,7 @@ export async function generateMetadata({ params: { locale } }: FAQPageParams): P
 
 export default async function FAQPage({ params: { locale } }: FAQPageParams) {
     const { t: strings } = await initTranslations(locale, i18nNamespaces)
+    const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     const questions = await getQuestions(locale)
 
@@ -29,6 +31,19 @@ export default async function FAQPage({ params: { locale } }: FAQPageParams) {
 
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd(
+                        '/faq/',
+                        metadata('faq-title'),
+                        metadata('faq-description'),
+                        locale,
+                        new Date('2024-04-22T17:38:48.063Z'),
+                        new Date()
+                    ))
+                }}
+            />
             <Header locale={locale} />
             <main className="text-black bg-white pt-28 overflow-hidden">
                 <section>

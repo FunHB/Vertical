@@ -5,6 +5,7 @@ import PricingComponent from "@/src/components/PricingComponent"
 import TranslationsProvider from "@/src/providers/TranslationsProvider"
 import { Metadata } from "next"
 import Link from "next/link"
+import { jsonLd } from "../layout"
 
 const i18nNamespaces: string[] = ['pricing']
 
@@ -24,11 +25,25 @@ export async function generateMetadata({ params: { locale } }: PricingParams): P
 
 export default async function Pricing({ params: { locale } }: PricingParams) {
     const { t: strings, resources } = await initTranslations(locale, i18nNamespaces)
+    const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     const pricings = await getPricings(locale)
 
     return (
         <TranslationsProvider namespaces={i18nNamespaces} locale={locale} resources={resources}>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd(
+                        '/pricing/',
+                        metadata('pricing-title'),
+                        metadata('pricing-description'),
+                        locale,
+                        new Date('2024-04-22T17:38:48.063Z'),
+                        new Date()
+                    ))
+                }}
+            />
             <Header locale={locale} />
             <main>
                 <section className="text-black bg-white pt-28 overflow-hidden">

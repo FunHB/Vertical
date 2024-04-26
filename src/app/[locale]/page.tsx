@@ -7,6 +7,7 @@ import BackgroundCarousel from "@/src/components/carousels/BackgroundCarousel"
 import WorkProcess from "@/src/components/WorkProcess"
 import Header from "@/src/components/Header"
 import { getImages } from "@/src/actions/getImages"
+import { jsonLd } from "./layout"
 
 interface HomeParams {
     params: {
@@ -17,12 +18,26 @@ interface HomeParams {
 export default async function Home({ params: { locale } }: HomeParams) {
     const { resources } = await initTranslations(locale, ['process'])
     const { t: strings, resources: homeResources } = await initTranslations(locale, ['home'])
+    const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     const offers = await getOffers(locale)
     const images = await getImages('home')
 
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd(
+                        '/',
+                        metadata('home-title'),
+                        metadata('home-description'),
+                        locale,
+                        new Date('2024-04-22T17:38:48.063Z'),
+                        new Date()
+                    ))
+                }}
+            />
             <Header locale={locale} white={true} />
             <>
                 <BackgroundCarousel />

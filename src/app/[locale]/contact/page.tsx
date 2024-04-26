@@ -4,6 +4,7 @@ import Header from "@/src/components/Header"
 import Triangle from "@/src/components/Triangle"
 import TranslationsProvider from "@/src/providers/TranslationsProvider"
 import { Metadata } from "next"
+import { jsonLd } from "../layout"
 
 const i18nNamespaces: string[] = ['contact']
 
@@ -23,9 +24,23 @@ export async function generateMetadata({ params: { locale } }: ContactParams): P
 
 export default async function Contact({ params: { locale } }: ContactParams) {
     const { t: strings, resources } = await initTranslations(locale, i18nNamespaces)
+    const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd(
+                        '/contact/',
+                        metadata('contact-title'),
+                        metadata('contact-description'),
+                        locale,
+                        new Date('2024-04-22T17:38:48.063Z'),
+                        new Date()
+                    ))
+                }}
+            />
             <Header locale={locale} />
             <TranslationsProvider locale={locale} namespaces={i18nNamespaces} resources={resources}>
                 <main>
