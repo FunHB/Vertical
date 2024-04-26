@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
                 languages: {
                     en: `https://vertical-arch.com/en/${id}`,
-                    ...localizations?.map(localization => { return { [localization.locale]: `https://vertical-arch.com/${localization.locale}/${id}` } })
+                    ...(localizations?.map(localization => { return { [localization.locale]: `https://vertical-arch.com/${localization.locale}/${id}` } }) ?? [])
                 }
             }
         }

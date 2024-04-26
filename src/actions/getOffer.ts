@@ -40,6 +40,6 @@ export const transformOffer = (offer: any): Offer => {
         index,
         createdAt: new Date(createdAt),
         updatedAt: new Date(updatedAt),
-        localizations: localizations.data.map((localization: any) => transformOffer(localization))
+        localizations: localizations ? localizations.data.map((localization: any) => transformOffer(localization)) : []
     }
 }
