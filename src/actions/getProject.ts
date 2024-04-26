@@ -2,8 +2,8 @@
 
 import { IImage } from '../types/image'
 import { Project } from '../types/project'
+import { transformProject } from '../utils/transform'
 import { cmsRequest } from './cmsRequest'
-import { transformImage } from './getImages'
 
 export const getProject = async (projectId: number, language: string): Promise<Project | null> => {
     try {
@@ -21,16 +21,3 @@ export const getProject = async (projectId: number, language: string): Promise<P
     }
 }
 
-export const transformProject = (project: any): Project => {
-    const { id, attributes: { title, images } } = project
-
-    const transformedImages: IImage[] = images?.data && images?.data.length > 0 ? images?.data.map(({ id, attributes }: any) => {
-        return transformImage({ id, ...attributes })
-    }) : []
-
-    return {
-        id,
-        title,
-        images: transformedImages
-    }
-}

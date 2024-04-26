@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getOffers } from '../actions/getOffers'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const offers = await getOffers('en', 'localizations')
+    const offers = await getOffers('en', ['localizations'])
 
     const offersSites = offers.map(offer => {
         const { id, localizations, updatedAt } = offer
@@ -15,7 +15,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             alternates: {
                 languages: {
                     en: `https://vertical-arch.com/en/${id}`,
-                    ...(localizations?.map(localization => { return { [localization.locale]: `https://vertical-arch.com/${localization.locale}/${id}` } }) ?? [])
+                    ...(localizations?.map(localization => {
+                        if (!localization) return
+                        return { [localization.locale]: `https://vertical-arch.com/${localization.locale}/${localization.id}` }
+                    }) ?? [])
                 }
             }
         }

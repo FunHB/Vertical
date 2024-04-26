@@ -1,6 +1,7 @@
 'use server'
 
 import { Question } from '../types/question'
+import { transformQuestion } from '../utils/transform'
 import { cmsRequest } from './cmsRequest'
 
 export const getQuestions = async (language: string): Promise<Question[]> => {
@@ -20,8 +21,3 @@ export const getQuestions = async (language: string): Promise<Question[]> => {
     }
 }
 
-export const transformQuestion = (question: any): Question => {
-    const { attributes: { index, header, answer, adnotation } } = question
-
-    return { id: index, header, answer, adnotation }
-}

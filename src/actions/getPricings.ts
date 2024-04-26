@@ -1,8 +1,8 @@
 'use server'
 
 import { Pricing } from '../types/Pricing'
+import { transformPricing } from '../utils/transform'
 import { cmsRequest } from './cmsRequest'
-import { transformPricing } from './getPricing'
 
 export const getPricings = async (language: string): Promise<Pricing[]> => {
     try {

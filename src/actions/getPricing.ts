@@ -1,8 +1,8 @@
 'use server'
 
 import { Pricing } from '../types/Pricing'
+import { transformPricing } from '../utils/transform'
 import { cmsRequest } from './cmsRequest'
-import { transformImage } from './getImages'
 
 export const getPricing = async (pricingId: number, language: string): Promise<Pricing | null> => {
     try {
@@ -17,20 +17,5 @@ export const getPricing = async (pricingId: number, language: string): Promise<P
     } catch (exception) {
         console.error(exception)
         return null
-    }
-}
-
-export const transformPricing = (pricing: any): Pricing => {
-    const { id, attributes: { index, title, subtitle, price, description, background_image } } = pricing
-    const { data: { id: imageId, attributes } } = background_image
-
-    return {
-        id,
-        title,
-        subtitle,
-        price,
-        description,
-        backgroundImage: transformImage({ imageId, ...attributes }),
-        index
     }
 }

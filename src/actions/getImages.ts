@@ -1,6 +1,7 @@
 'use server'
 
 import { IImage } from '../types/image'
+import { transformImage } from '../utils/transform'
 import { cmsRequest } from './cmsRequest'
 
 export const getImages = async (name: string): Promise<IImage[]> => {
@@ -17,23 +18,5 @@ export const getImages = async (name: string): Promise<IImage[]> => {
     } catch (exception) {
         console.error(exception)
         return []
-    }
-}
-
-export const transformImage = (image: any): IImage => {
-    const { name, caption, alternativeText, formats } = image
-    const { thumbnail, small, medium, large, xlarge } = formats ?? {}
-    
-    return {
-        name,
-        caption,
-        alternativeText,
-        formats: {
-            thumbnail: thumbnail?.url,
-            small: small?.url,
-            medium: medium?.url,
-            large: large?.url,
-            huge: xlarge?.url
-        }
     }
 }

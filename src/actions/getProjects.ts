@@ -1,8 +1,8 @@
 'use server'
 
 import { Project } from '../types/project'
+import { transformProject } from '../utils/transform'
 import { cmsRequest } from './cmsRequest'
-import { transformProject } from './getProject'
 
 export const getProjects = async (language: string): Promise<Project[]> => {
     try {
