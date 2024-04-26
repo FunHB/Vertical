@@ -13,13 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'monthly' as 'monthly',
             priority: 1,
             alternates: {
-                languages: {
-                    en: `https://vertical-arch.com/en/${id}`,
+                languages: Object.assign(
+                    { en: `https://vertical-arch.com/en/${id}` },
                     ...(localizations?.map(localization => {
-                        if (!localization) return
                         return { [localization.locale]: `https://vertical-arch.com/${localization.locale}/${localization.id}` }
                     }) ?? [])
-                }
+                )
             }
         }
     })
@@ -44,8 +43,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
             alternates: {
                 languages: {
-                    en: 'https://vertical-arch.com/en',
-                    pl: 'https://vertical-arch.com/pl'
+                    en: 'https://vertical-arch.com/en/about',
+                    pl: 'https://vertical-arch.com/pl/about'
                 }
             }
         },
@@ -56,8 +55,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.5,
             alternates: {
                 languages: {
-                    en: 'https://vertical-arch.com/en',
-                    pl: 'https://vertical-arch.com/pl'
+                    en: 'https://vertical-arch.com/en/faq',
+                    pl: 'https://vertical-arch.com/pl/faq'
                 }
             }
         },
@@ -68,8 +67,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.5,
             alternates: {
                 languages: {
-                    en: 'https://vertical-arch.com/en',
-                    pl: 'https://vertical-arch.com/pl'
+                    en: 'https://vertical-arch.com/en/pricing',
+                    pl: 'https://vertical-arch.com/pl/pricing'
                 }
             }
         },
@@ -80,8 +79,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
             alternates: {
                 languages: {
-                    en: 'https://vertical-arch.com/en',
-                    pl: 'https://vertical-arch.com/pl'
+                    en: 'https://vertical-arch.com/en/contact',
+                    pl: 'https://vertical-arch.com/pl/contact'
                 }
             }
         },
