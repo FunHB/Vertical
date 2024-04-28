@@ -20,7 +20,7 @@ export async function generateMetadata({ params: { locale } }: AboutParams): Pro
     return {
         metadataBase: new URL('https://vertical-arch.com/about'),
         alternates: {
-            canonical: '/about',
+            canonical: `/${locale}/about`,
             languages: {
                 'en-US': '/en/about',
                 'pl-PL': '/pl/about'

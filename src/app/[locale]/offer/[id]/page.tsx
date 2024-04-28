@@ -23,7 +23,7 @@ export async function generateMetadata({ params: { locale, id } }: OfferPagePara
     return {
         metadataBase: new URL('https://vertical-arch.com/offer', `${id}`),
         alternates: {
-            canonical: `/offer/${id}`,
+            canonical: `/${locale}/offer/${id}`,
             languages: {
                 'en-US': `/en/offer/${id}`,
                 'pl-PL': `/pl/offer/${id}`

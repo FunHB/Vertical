@@ -19,7 +19,7 @@ export async function generateMetadata({ params: { locale } }: FAQPageParams): P
     return {
         metadataBase: new URL('https://vertical-arch.com/faq'),
         alternates: {
-            canonical: '/faq',
+            canonical: `/${locale}/faq`,
             languages: {
                 'en-US': '/en/faq',
                 'pl-PL': '/pl/faq'

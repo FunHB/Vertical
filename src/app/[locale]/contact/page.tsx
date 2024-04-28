@@ -20,7 +20,7 @@ export async function generateMetadata({ params: { locale } }: ContactParams): P
     return {
         metadataBase: new URL('https://vertical-arch.com/contact'),
         alternates: {
-            canonical: '/contact',
+            canonical: `/${locale}/contact`,
             languages: {
                 'en-US': '/en/contact',
                 'pl-PL': '/pl/contact'

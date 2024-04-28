@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { locale } }: PricingParams): P
     return {
         metadataBase: new URL('https://vertical-arch.com/pricing'),
         alternates: {
-            canonical: '/pricing',
+            canonical: `/${locale}/pricing`,
             languages: {
                 'en-US': '/en/pricing',
                 'pl-PL': '/pl/pricing'
