@@ -17,7 +17,30 @@ export async function generateMetadata({ params: { locale } }: FAQPageParams): P
     const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     return {
-        title: metadata('faq-title')
+        metadataBase: new URL('https://vertical-arch.com/faq'),
+        alternates: {
+            canonical: '/faq',
+            languages: {
+                'en-US': '/en/faq',
+                'pl-PL': '/pl/faq'
+            }
+        },
+        title: metadata('faq-title'),
+        description: metadata('faq-description'),
+        openGraph: {
+            title: metadata('faq-title'),
+            description: metadata('faq-description'),
+            siteName: 'Vertical Design Studio',
+            type: 'website',
+            images: [{
+                url: '/img/logo.png',
+                width: 1200,
+                height: 630,
+                type: 'image/png',
+                secureUrl: 'https://vertical-arch.com/img/logo.png',
+            }],
+            url: 'https://vertical-arch.com/'
+        }
     }
 }
 

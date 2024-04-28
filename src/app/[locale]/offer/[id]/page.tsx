@@ -18,10 +18,33 @@ export const revalidate = 60 * 60 * 6 /* hours */ + 60 * 0 /* minutes */ + 0 /* 
 
 export async function generateMetadata({ params: { locale, id } }: OfferPageParams): Promise<Metadata> {
     const offer = await getOffer(id)
-    const { title } = offer[locale] ?? {}
+    const { title, shortDescription } = offer[locale] ?? {}
 
     return {
-        title: `${title}`,
+        metadataBase: new URL('https://vertical-arch.com/offer', `${id}`),
+        alternates: {
+            canonical: `/offer/${id}`,
+            languages: {
+                'en-US': `/en/offer/${id}`,
+                'pl-PL': `/pl/offer/${id}`
+            }
+        },
+        title: `Vertical - ${title}`,
+        description: shortDescription,
+        openGraph: {
+            title: `Vertical - ${title}`,
+            description: shortDescription,
+            siteName: 'Vertical Design Studio',
+            type: 'website',
+            images: [{
+                url: '/img/logo.png',
+                width: 1200,
+                height: 630,
+                type: 'image/png',
+                secureUrl: 'https://vertical-arch.com/img/logo.png',
+            }],
+            url: 'https://vertical-arch.com/'
+        }
     }
 }
 

@@ -18,7 +18,30 @@ export async function generateMetadata({ params: { locale } }: AboutParams): Pro
     const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     return {
-        title: metadata('about-title')
+        metadataBase: new URL('https://vertical-arch.com/about'),
+        alternates: {
+            canonical: '/about',
+            languages: {
+                'en-US': '/en/about',
+                'pl-PL': '/pl/about'
+            }
+        },
+        title: metadata('about-title'),
+        description: metadata('about-description'),
+        openGraph: {
+            title: metadata('about-title'),
+            description: metadata('about-description'),
+            siteName: 'Vertical Design Studio',
+            type: 'website',
+            images: [{
+                url: '/img/logo.png',
+                width: 1200,
+                height: 630,
+                type: 'image/png',
+                secureUrl: 'https://vertical-arch.com/img/logo.png',
+            }],
+            url: 'https://vertical-arch.com/'
+        }
     }
 }
 
