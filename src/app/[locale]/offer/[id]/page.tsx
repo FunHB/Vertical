@@ -21,7 +21,6 @@ export async function generateMetadata({ params: { locale, id } }: OfferPagePara
     const { title, shortDescription } = offer[locale] ?? {}
 
     return {
-        metadataBase: new URL('https://vertical-arch.com/offer', `${id}`),
         alternates: {
             canonical: `/${locale}/offer/${id}`,
             languages: {
@@ -33,17 +32,7 @@ export async function generateMetadata({ params: { locale, id } }: OfferPagePara
         description: shortDescription,
         openGraph: {
             title: `Vertical - ${title}`,
-            description: shortDescription,
-            siteName: 'Vertical Design Studio',
-            type: 'website',
-            images: [{
-                url: '/img/logo.png',
-                width: 1200,
-                height: 630,
-                type: 'image/png',
-                secureUrl: 'https://vertical-arch.com/img/logo.png',
-            }],
-            url: 'https://vertical-arch.com/'
+            description: shortDescription
         }
     }
 }

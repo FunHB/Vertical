@@ -18,7 +18,6 @@ export async function generateMetadata({ params: { locale } }: ContactParams): P
     const { t: metadata } = await initTranslations(locale, ['metadata'])
 
     return {
-        metadataBase: new URL('https://vertical-arch.com/contact'),
         alternates: {
             canonical: `/${locale}/contact`,
             languages: {
@@ -30,17 +29,7 @@ export async function generateMetadata({ params: { locale } }: ContactParams): P
         description: metadata('contact-description'),
         openGraph: {
             title: metadata('contact-title'),
-            description: metadata('contact-description'),
-            siteName: 'Vertical Design Studio',
-            type: 'website',
-            images: [{
-                url: '/img/logo.png',
-                width: 1200,
-                height: 630,
-                type: 'image/png',
-                secureUrl: 'https://vertical-arch.com/img/logo.png',
-            }],
-            url: 'https://vertical-arch.com/'
+            description: metadata('contact-description')
         }
     }
 }
