@@ -42,7 +42,7 @@ export default async function OfferPage({ params: { locale, id } }: OfferPagePar
     const localeOffer = offer[locale]
 
     if (!localeOffer) {
-        notFound()
+        return notFound()
     }
 
     const { title, shortDescription, longDescription, projects, createdAt, updatedAt } = localeOffer
