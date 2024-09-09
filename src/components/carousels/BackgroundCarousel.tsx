@@ -2,7 +2,7 @@
 
 import 'react-multi-carousel/lib/styles.css'
 import Carousel from "react-multi-carousel"
-import { Background1, Background2, Background2b, Background3, Background4, Background5, Background6, Background7 } from "@/src/assets/img/home/background"
+import { Background1, Background2, Background3, Background4, Background5, Background6, Background7, Background8, Background9 } from "@/src/assets/img/home/background"
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -17,12 +17,13 @@ export default function BackgroundCarousel({ }: BackgroundCarouselProps) {
     const images = [
         { src: Background1, alt: '1' },
         { src: Background2, alt: '2' },
-        { src: Background2b, alt: '2b' },
         { src: Background3, alt: '3' },
         { src: Background4, alt: '4' },
         { src: Background5, alt: '5' },
         { src: Background6, alt: '6' },
-        { src: Background7, alt: '7' }
+        { src: Background7, alt: '7' },
+        { src: Background8, alt: '8' },
+        { src: Background9, alt: '9' },
     ]
 
     return (
