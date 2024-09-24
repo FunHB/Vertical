@@ -4,6 +4,7 @@ import { faNotdef } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { getSocialMedia } from "@/src/actions/getSocialMedia"
 import { SizeProp } from "@fortawesome/fontawesome-svg-core"
+import { faZlecaPl } from '@/src/assets/img/socialMedia/faZlecaPl'
 
 interface SocialMediaProps {
     box?: boolean
@@ -66,6 +67,10 @@ const getIconByType = (type: SocialMediaType) => {
 
     if (type === SocialMediaType.YouTube) {
         return faYoutube
+    }
+
+    if (type === SocialMediaType.ZlecaPl) {
+        return faZlecaPl
     }
 
     return faNotdef

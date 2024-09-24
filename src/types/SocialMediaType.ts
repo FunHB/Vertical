@@ -20,4 +20,5 @@ export enum SocialMediaType {
     Reddit,
     TikTok,
     Snapchat,
+    ZlecaPl
 }
